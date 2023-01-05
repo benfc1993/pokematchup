@@ -1,0 +1,56 @@
+Arguments: 
+  /home/ben/.nvm/versions/node/v17.7.2/bin/node /home/ben/.nvm/versions/node/v17.7.2/bin/yarn start
+
+PATH: 
+  /home/ben/.nvm/versions/node/v17.7.2/bin:/home/ben/projects/crane/Crane/vulkan/1.3.224.1/x86_64/bin:/home/ben/projects/crane/Crane/vulkan/1.3.224.1/x86_64/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin
+
+Yarn version: 
+  1.22.18
+
+Node version: 
+  17.7.2
+
+Platform: 
+  linux x64
+
+Trace: 
+  Invariant Violation: Script must exist
+      at invariant (/home/ben/.nvm/versions/node/v17.7.2/lib/node_modules/yarn/lib/cli.js:2314:15)
+      at /home/ben/.nvm/versions/node/v17.7.2/lib/node_modules/yarn/lib/cli.js:61537:11
+      at Generator.next (<anonymous>)
+      at step (/home/ben/.nvm/versions/node/v17.7.2/lib/node_modules/yarn/lib/cli.js:310:30)
+      at /home/ben/.nvm/versions/node/v17.7.2/lib/node_modules/yarn/lib/cli.js:328:14
+      at new Promise (<anonymous>)
+      at new F (/home/ben/.nvm/versions/node/v17.7.2/lib/node_modules/yarn/lib/cli.js:5301:28)
+      at /home/ben/.nvm/versions/node/v17.7.2/lib/node_modules/yarn/lib/cli.js:307:12
+      at realRunCommand (/home/ben/.nvm/versions/node/v17.7.2/lib/node_modules/yarn/lib/cli.js:61622:23)
+      at action.action (/home/ben/.nvm/versions/node/v17.7.2/lib/node_modules/yarn/lib/cli.js:61683:16)
+
+npm manifest: 
+  {
+    "name": "pokematchup",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "start": ""
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/benfc1993/pokematchup.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+      "url": "https://github.com/benfc1993/pokematchup/issues"
+    },
+    "homepage": "https://github.com/benfc1993/pokematchup#readme"
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
