@@ -1,0 +1,224 @@
+{
+    "types": [
+        [
+            3,
+            0
+        ],
+        [
+            7,
+            8
+        ],
+        [
+            1,
+            13
+        ],
+        [
+            12
+        ],
+        [
+            15,
+            9
+        ],
+        [
+            17,
+            16
+        ]
+    ],
+    "team": {
+        "Grass - Normal": {
+            "monName": "Arboliva",
+            "weakness": [
+                "Fire",
+                "Ice",
+                "Poison",
+                "Flying",
+                "Bug",
+                "Fighting"
+            ],
+            "defence": [
+                "Water",
+                "Grass",
+                "Electric",
+                "Ground",
+                "Ghost"
+            ],
+            "offence": [
+                "Water",
+                "Ground",
+                "Rock"
+            ]
+        },
+        "Poison - Ground": {
+            "monName": "Clodsire",
+            "weakness": [
+                "Ground",
+                "Psychic",
+                "Water",
+                "Ice"
+            ],
+            "defence": [
+                "Grass",
+                "Fighting",
+                "Poison",
+                "Bug",
+                "Fairy",
+                "Electric",
+                "Rock"
+            ],
+            "offence": [
+                "Grass",
+                "Fairy",
+                "Fire",
+                "Electric",
+                "Poison",
+                "Rock",
+                "Steel"
+            ]
+        },
+        "Fire - Ghost": {
+            "monName": "Skeledirge",
+            "weakness": [
+                "Water",
+                "Ground",
+                "Rock",
+                "Ghost",
+                "Dark"
+            ],
+            "defence": [
+                "Fire",
+                "Grass",
+                "Ice",
+                "Bug",
+                "Steel",
+                "Fairy",
+                "Normal",
+                "Fighting",
+                "Poison"
+            ],
+            "offence": [
+                "Grass",
+                "Ice",
+                "Bug",
+                "Steel",
+                "Psychic",
+                "Ghost"
+            ]
+        },
+        "Rock": {
+            "monName": "Garganacl",
+            "weakness": [
+                "Water",
+                "Grass",
+                "Fighting",
+                "Ground",
+                "Steel"
+            ],
+            "defence": [
+                "Normal",
+                "Fire",
+                "Poison",
+                "Flying"
+            ],
+            "offence": [
+                "Fire",
+                "Ice",
+                "Flying",
+                "Bug"
+            ]
+        },
+        "Dark - Flying": {
+            "monName": "murkrow",
+            "weakness": [
+                "Fairy",
+                "Electric",
+                "Ice",
+                "Rock"
+            ],
+            "defence": [
+                "Psychic",
+                "Ghost",
+                "Dark",
+                "Grass",
+                "Fighting",
+                "Ground",
+                "Bug"
+            ],
+            "offence": [
+                "Psychic",
+                "Ghost",
+                "Grass",
+                "Fighting",
+                "Bug"
+            ]
+        },
+        "Fairy - Steel": {
+            "monName": "Tinkaton",
+            "weakness": [
+                "Fire",
+                "Ground"
+            ],
+            "defence": [
+                "Fighting",
+                "Bug",
+                "Dragon",
+                "Dark",
+                "Normal",
+                "Grass",
+                "Ice",
+                "Poison",
+                "Flying",
+                "Psychic",
+                "Rock",
+                "Steel",
+                "Fairy"
+            ],
+            "offence": [
+                "Fighting",
+                "Dragon",
+                "Dark",
+                "Ice",
+                "Rock",
+                "Fairy"
+            ]
+        }
+    },
+    "defences": [
+        "Water",
+        "Grass",
+        "Electric",
+        "Ground",
+        "Ghost",
+        "Fighting",
+        "Poison",
+        "Bug",
+        "Fairy",
+        "Rock",
+        "Fire",
+        "Ice",
+        "Steel",
+        "Normal",
+        "Flying",
+        "Psychic",
+        "Dark",
+        "Dragon"
+    ],
+    "offences": [
+        "Water",
+        "Ground",
+        "Rock",
+        "Grass",
+        "Fairy",
+        "Fire",
+        "Electric",
+        "Poison",
+        "Steel",
+        "Ice",
+        "Bug",
+        "Psychic",
+        "Ghost",
+        "Flying",
+        "Fighting",
+        "Dragon",
+        "Dark"
+    ]
+}

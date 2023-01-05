@@ -1,0 +1,28 @@
+{
+  "client": "Thunder Client",
+  "collectionName": "pokematchup",
+  "dateExported": "2023-01-05T20:41:55.927Z",
+  "version": "1.1",
+  "folders": [],
+  "requests": [
+    {
+      "_id": "165aa6c7-5dee-4ed4-ab57-a7599856d763",
+      "colId": "cdf5de06-a2e4-4264-b318-6828c6e8afdd",
+      "containerId": "",
+      "name": "Team add member",
+      "url": "http://localhost:3000/team/add",
+      "method": "POST",
+      "sortNum": 10000,
+      "created": "2023-01-05T20:41:29.684Z",
+      "modified": "2023-01-05T20:41:29.684Z",
+      "headers": [],
+      "params": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"types\": [1,6],\n  \"name\": \"Testing\",\n  \"team\": {\n    \"types\": [],\n    \"names\": []\n  }\n}",
+        "form": []
+      },
+      "tests": []
+    }
+  ]
+}
