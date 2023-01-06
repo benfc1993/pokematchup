@@ -19,6 +19,26 @@ export const types: string[] = [
   'Fairy'
 ];
 
+export type typeNames =
+  | 'Normal'
+  | 'Fire'
+  | 'Water'
+  | 'Grass'
+  | 'Electric'
+  | 'Ice'
+  | 'Fighting'
+  | 'Poison'
+  | 'Ground'
+  | 'Flying'
+  | 'Psychic'
+  | 'Bug'
+  | 'Rock'
+  | 'Ghost'
+  | 'Dragon'
+  | 'Dark'
+  | 'Steel'
+  | 'Fairy';
+
 export enum Types {
   N,
   F,

@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { types } from '../types';
+import { types } from '../shared/types';
+import './styles.css';
 
 interface TypesSelectorsState {
   primaryType: number;
@@ -7,7 +8,7 @@ interface TypesSelectorsState {
 }
 
 interface TypesSelectorsProps {
-  onTypesChanged: (name: string, type: number) => void;
+  onTypesChanged: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
 export const TypesSelectors: React.FC<TypesSelectorsProps> = (props) => {
@@ -20,15 +21,16 @@ export const TypesSelectors: React.FC<TypesSelectorsProps> = (props) => {
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = event.target;
-    onTypesChanged(name, parseInt(value));
     setFormState((prevState) => ({ ...prevState, [name]: parseInt(value) }));
+    onTypesChanged(event);
   };
 
   return (
-    <div>
-      <label>
-        Primary Type:
+    <div className="w-100">
+      <label className="form__label">
+        <p>Primary Type:</p>
         <select
+          className="form__input"
           name="primaryType"
           value={formState.primaryType}
           onChange={handleChange}
@@ -42,9 +44,10 @@ export const TypesSelectors: React.FC<TypesSelectorsProps> = (props) => {
         </select>
       </label>
       <br />
-      <label>
-        Secondary Type:
+      <label className="form__label">
+        <p>Secondary Type:</p>
         <select
+          className="form__input"
           name="secondaryType"
           value={formState.secondaryType}
           onChange={handleChange}

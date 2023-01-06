@@ -1,27 +1,38 @@
-import logo from './logo.svg';
 import './App.css';
-import { AddMemberForm } from './Forms/AddMemberForm';
+import { TeamStoreProvider, useTeamStoreContext } from './stores/TeamStore';
+import { AddMemberByTypeForm } from './Forms/AddMemberByTypeForm';
+import { TeamView } from './Team/TeamView';
+import { AddMemberByNameForm } from './Forms/AddMemberByNameForm';
 
 function App() {
   return (
-    <div className="App">
-      <AddMemberForm />
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <TeamStoreProvider>
+      <div className="App">
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <AddMemberByNameForm />
+          <div style={{ margin: '10px 0' }}></div>
+          <AddMemberByTypeForm />
+          <ClearButton />
+        </div>
+        <TeamView />
+      </div>
+    </TeamStoreProvider>
   );
 }
 
 export default App;
+
+const ClearButton = () => {
+  const { setData } = useTeamStoreContext();
+
+  return (
+    <button
+      className="form__button"
+      onClick={() =>
+        setData({ types: [], team: {}, defences: [], offences: [] })
+      }
+    >
+      Clear
+    </button>
+  );
+};
