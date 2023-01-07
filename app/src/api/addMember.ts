@@ -10,7 +10,7 @@ export const addMemberByType = async (
     body: JSON.stringify({
       teamData,
       types: types.filter((t) => t >= 0),
-      name
+      name: name.normalize('NFD').replace(/\p{Diacritic}/gu, '')
     }),
     headers: {
       'Content-Type': 'application/json'

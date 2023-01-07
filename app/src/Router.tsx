@@ -1,9 +1,8 @@
 import { createBrowserRouter, Outlet } from 'react-router-dom';
 import { AddMember } from './pages/AddMember';
-import { TeamView } from './components/TeamView/TeamView';
 import { TeamStoreProvider } from './stores/TeamStore';
 import { TeamBalancer } from './pages/TeamBalancer';
-import { Matchup } from './pages/Matchup';
+import { Matchup } from './pages/Matchup/Matchup';
 
 export const router = createBrowserRouter([
   {

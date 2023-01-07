@@ -5,7 +5,8 @@ import { TypeIcon } from '../../TypeIcon/TypeIcon';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCheckCircle,
-  faCircleXmark
+  faCircleXmark,
+  faXmark
 } from '@fortawesome/free-solid-svg-icons';
 
 type MemberCardProps = {
@@ -22,18 +23,18 @@ export const MemberCard: React.FC<MemberCardProps> = (props) => {
         <div className="member-card__selected">
           <FontAwesomeIcon
             icon={selected ? faCheckCircle : faCircleXmark}
-            color={selected ? 'green' : 'red'}
+            color={selected ? '#69db69' : '#db2222'}
             size={'xl'}
           />
         </div>
       )}
       <div className="member-card__close" onClick={() => onRemoveClicked()}>
-        X
+        <FontAwesomeIcon icon={faXmark} />
       </div>
       <h3>{member.monName}</h3>
       <div className="member-card__icons">
         {member.types.map((type) => (
-          <TypeIcon key={type} type={type} size={'large'} />
+          <TypeIcon key={type} type={type} size={'medium'} />
         ))}
       </div>
     </div>

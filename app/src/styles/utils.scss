@@ -9,8 +9,15 @@
     flex-direction: column;
 }
 
-.w-100
-
+.w{
+    &-50 {
+        width: 50%;
+    }
+    &-100 {
+        width: 100%;
+    }
+}
+ 
 .align {
     &-center{
         align-items: center;

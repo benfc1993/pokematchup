@@ -23,6 +23,7 @@
   },
   "proxy": "http://localhost:3001",
   "scripts": {
+    "lint": "eslint",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "watch": "node scripts/watch.js",

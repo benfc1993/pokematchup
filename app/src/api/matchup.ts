@@ -8,7 +8,7 @@ export const matchupByName = async (
     method: 'POST',
     body: JSON.stringify({
       teamData,
-      name
+      name: name.normalize('NFD').replace(/\p{Diacritic}/gu, '')
     }),
     headers: {
       'Content-Type': 'application/json'

@@ -15,7 +15,7 @@ export const byName = (router: Router) =>
     ) => {
       const { teamData, name } = req.body;
 
-      console.log(teamData);
+      console.log(name);
 
       const newTeam = await matchupByName(teamData, name);
 

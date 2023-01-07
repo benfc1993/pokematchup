@@ -1,0 +1,13 @@
+.matchup-page {
+    display: grid;
+    grid-template-columns: 1fr;
+    @media (min-width: 1080px) {
+        flex-direction: row;
+        align-content: center;
+        grid-template-columns: 0.8fr 0.2fr 0.8fr;
+    }
+    .section {
+        @media(min-width: 1080px) {
+        }
+    }
+}

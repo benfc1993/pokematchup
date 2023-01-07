@@ -13,13 +13,17 @@ export const TeamView: React.FC = () => {
       {teamData &&
         Array.from({ length: 6 }).map((_v, idx) => {
           return teamMembers[idx] ? (
-            <MemberCard
-              key={teamMembers[idx]?.monName}
-              onRemoveClicked={() => removeMember(idx)}
-              member={teamMembers[idx] as TeamMember}
-            />
+            <div className="grid-item">
+              <MemberCard
+                key={teamMembers[idx]?.monName}
+                onRemoveClicked={() => removeMember(idx)}
+                member={teamMembers[idx] as TeamMember}
+              />
+            </div>
           ) : (
-            <EmptyCard key={idx} />
+            <div className="grid-item">
+              <EmptyCard key={idx} />
+            </div>
           );
         })}
     </div>

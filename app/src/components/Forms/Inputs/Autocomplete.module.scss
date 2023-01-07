@@ -21,12 +21,14 @@
 .suggestion {
     padding: 0.5em;
     border-bottom: 1px #fff;
+    color: #afaba5;
     cursor: pointer;
     transition: ease 0.3s;
+    background-color: #282a2b;
     &.active, &:hover {
-        background-color: rgb(70, 70, 70);
+        background-color: #343738;
     }
     &:active {
-        background-color: rgb(61, 61, 61);
+        background-color: #343738;
     }
 }
