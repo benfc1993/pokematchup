@@ -25,8 +25,10 @@ export const addMemberByName = (router: Router) =>
       const names = Object.values(currentTeam.team).map(
         (member) => member?.monName ?? ''
       );
+
       try {
-        const types = await getPokemonTypes(name);
+        const cleanName = name.replace(/\'/, '');
+        const types = await getPokemonTypes(cleanName);
         currentTeam.types.push(types);
         names.push(sentenceCase(name));
 

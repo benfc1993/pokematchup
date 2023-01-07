@@ -1,26 +1,39 @@
 import { TeamMember } from '../../../shared/types';
 import './memberCardStyle.scss';
 import '../../../styles/utils.scss';
+import { TypeIcon } from '../../TypeIcon/TypeIcon';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faCheckCircle,
+  faCircleXmark
+} from '@fortawesome/free-solid-svg-icons';
 
-type MemberCardProps = { member: TeamMember; onRemoveClicked: () => void };
+type MemberCardProps = {
+  selected?: boolean;
+  member: TeamMember;
+  onRemoveClicked: () => void;
+};
 
 export const MemberCard: React.FC<MemberCardProps> = (props) => {
-  const { member, onRemoveClicked } = props;
+  const { selected, member, onRemoveClicked } = props;
   return (
     <div className="member-card">
+      {selected !== undefined && (
+        <div className="member-card__selected">
+          <FontAwesomeIcon
+            icon={selected ? faCheckCircle : faCircleXmark}
+            color={selected ? 'green' : 'red'}
+            size={'xl'}
+          />
+        </div>
+      )}
       <div className="member-card__close" onClick={() => onRemoveClicked()}>
         X
       </div>
       <h3>{member.monName}</h3>
-      <div className="d-flex align-center">
+      <div className="member-card__icons">
         {member.types.map((type) => (
-          <img
-            key={type}
-            src={`/assets/type-icons/${type}.png`}
-            className={`member-card__type-icon ${
-              member.types.length > 1 ? 'mr-auto' : 'm-auto'
-            }`}
-          />
+          <TypeIcon key={type} type={type} size={'large'} />
         ))}
       </div>
     </div>

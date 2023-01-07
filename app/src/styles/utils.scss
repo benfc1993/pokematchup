@@ -9,6 +9,8 @@
     flex-direction: column;
 }
 
+.w-100
+
 .align {
     &-center{
         align-items: center;
@@ -30,6 +32,12 @@
     }
     &-end{
         justify-content: flex-end;
+    }
+    &-around {
+        justify-content: space-around;
+    }
+    &-between {
+        justify-content: space-between;
     }
 }
 

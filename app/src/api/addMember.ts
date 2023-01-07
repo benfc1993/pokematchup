@@ -16,7 +16,7 @@ export const addMemberByType = async (
       'Content-Type': 'application/json'
     }
   });
-    
+
   if (response.status >= 400) throw response;
   return await response.json();
 };
@@ -26,7 +26,7 @@ export const addMemberByName = async (teamData: TeamData, name: string) => {
     method: 'POST',
     body: JSON.stringify({
       teamData,
-      name
+      name: name.normalize('NFD').replace(/\p{Diacritic}/gu, '')
     }),
     headers: {
       'Content-Type': 'application/json'

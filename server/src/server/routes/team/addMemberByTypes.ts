@@ -15,6 +15,10 @@ export const addMemberByTypes = (router: Router) =>
       res
     ) => {
       const { teamData, name, types } = req.body;
+
+      if (!req.body.name || !req.body.types || !req.body.teamData)
+        return res.status(400).send('Request data malformed');
+
       if (req.body instanceof Array)
         return res.status(400).send('Request data malformed');
 

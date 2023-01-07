@@ -6,33 +6,34 @@ type Team = Types[][];
 
 export type TeamData = {
   types: Team;
-  team: Record<string, TeamMember>;
+  team: TeamMember[];
   defences: string[];
   offences: string[];
+  weaknesses: string[];
 };
 
 export type TeamMember = PokemonStats & {
-  monName?: string;
+  monName: string;
 };
 
-export const validateTeam = (team: Team, names?: (string | null)[]) => {
+export const validateTeam = (team: Team, names: string[]) => {
   const teamData: TeamData = {
     types: team,
-    team: {},
+    team: [],
     defences: [],
-    offences: []
+    offences: [],
+    weaknesses: []
   };
 
   const fullDefence = new Set<Types>();
   const fullOffence = new Set<Types>();
+  const fullWeaknesses = new Set<Types>();
 
   let i = 0;
   for (const mon of team) {
-    const monType = mon.map((t) => matchups[t].name).join(' - ');
-
     const monStats = getStats(mon);
 
-    teamData.team[monType] = monStats;
+    teamData.team.push({ ...monStats, monName: names[i] });
 
     for (const o of monStats.offence) {
       fullOffence.add(nameToType(o));
@@ -46,14 +47,20 @@ export const validateTeam = (team: Team, names?: (string | null)[]) => {
       fullDefence.add(nameToType(r));
     }
 
-    if (names && names[i] !== null) {
-      (teamData.team[monType] as TeamMember).monName = names[i] as string;
+    for (const w of monStats.weakness) {
+      fullWeaknesses.add(nameToType(w));
     }
+
     i++;
+  }
+
+  for (const d of fullDefence) {
+    fullWeaknesses.delete(d);
   }
 
   teamData.defences = typesSetToNames(fullDefence);
   teamData.offences = typesSetToNames(fullOffence);
+  teamData.weaknesses = typesSetToNames(fullWeaknesses);
 
   return teamData;
 };

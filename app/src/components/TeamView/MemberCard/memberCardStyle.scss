@@ -7,9 +7,9 @@
     border-radius: 4px;
     cursor: pointer;
     position: relative;
-    &__type-icon {
-        width: 5em;
-        height: 5em;
+    __icons {
+        display: flex;
+        justify-content: space-between;
     }
     &:hover {
         transition: ease 0.25s;
@@ -18,11 +18,6 @@
             P{
                 color: #FFF;
             }
-        }
-        .member-card__close  {
-            transition-property: opacity;
-            transition-duration: .35s;
-            opacity: 1;
         }
     }
     &__empty {
@@ -45,7 +40,6 @@
         }
     }
     .member-card__close {
-        opacity: 0;
         background-color: red;
         position: absolute;
         top: 0;

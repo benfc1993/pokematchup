@@ -7,7 +7,7 @@ import { getStats, PokemonStats } from './stats';
 import { TeamData, TeamMember } from './teamValidations';
 
 type MatchupResult = {
-  opponentData: PokemonStats;
+  opponentData: TeamMember;
   teamChoices: Record<
     string,
     {
@@ -22,17 +22,18 @@ export const matchupByName = async (
   teamData: TeamData,
   name: string
 ): Promise<MatchupResult> => {
-  return getPokemonTypes(name).then(
-    async (opponentTypes) => await matchupByTypes(teamData, opponentTypes)
+  return await getPokemonTypes(name).then(
+    async (opponentTypes) => await matchupByTypes(teamData, opponentTypes, name)
   );
 };
 
 export const matchupByTypes = async (
   teamData: TeamData,
-  opponentTypes: Types[]
+  opponentTypes: Types[],
+  opponenName: string = ''
 ): Promise<MatchupResult> => {
   const teamChoices = await monsterChoice(teamData, opponentTypes);
-  const results = formatResults(teamChoices, opponentTypes);
+  const results = formatResults(opponenName, teamChoices, opponentTypes);
   return results;
 };
 
@@ -61,44 +62,37 @@ export const monsterChoice = async (
     { offence: string[]; damageMultiplier: number; resistances: string[] }
   > = {};
 
-  const teamMembers: [string, TeamMember][] = Object.entries(teamData.team) as [
-    string,
-    TeamMember
-  ][];
+  const teamMembers: TeamMember[] = teamData.team;
 
-  teamMembers.forEach(
-    ([teamMemberTypeString, teamMember]: [string, TeamMember]) => {
-      const teamMemberTypes = teamMemberTypeString.split(' - ');
+  teamMembers.forEach((teamMember: TeamMember) => {
+    const opponentStats = getStats(opponentTypes);
 
-      const opponentStats = getStats(opponentTypes);
+    const opponentIsResistant = teamMember.types
+      .map((type) => opponentStats.resistances.includes(type))
+      .reduce((bool, res) => bool && res, false);
 
-      const opponentIsResistant = teamMemberTypes
-        .map((type) => opponentStats.resistances.includes(type))
-        .reduce((bool, res) => bool && res, false);
+    const damageMultiplier = calculateDefence(
+      teamMember,
+      typesToNames(opponentTypes)
+    );
 
-      const damageMultiplier = calculateDefence(
-        teamMember,
-        typesToNames(opponentTypes)
-      );
+    const offence: string[] = calculateOffenceTypes(
+      teamMember.types,
+      opponentStats
+    );
 
-      const offence: string[] = calculateOffenceTypes(
-        teamMemberTypes,
-        opponentStats
-      );
+    const resistances =
+      teamMember.resistances.filter((resistance) =>
+        typesToNames(opponentTypes).includes(resistance)
+      ) || [];
 
-      const resistances =
-        teamMember.resistances.filter((resistance) =>
-          typesToNames(opponentTypes).includes(resistance)
-        ) || [];
-
-      if (damageMultiplier <= 1 && !opponentIsResistant)
-        choices[teamMemberTypeString] = {
-          offence,
-          damageMultiplier,
-          resistances
-        };
-    }
-  );
+    if (damageMultiplier <= 1 && !opponentIsResistant)
+      choices[teamMember.monName] = {
+        offence,
+        damageMultiplier,
+        resistances
+      };
+  });
 
   return choices;
 };
@@ -139,6 +133,7 @@ const calculateOffenceTypes = (
 };
 
 export function formatResults(
+  opponentName: string,
   results: Record<
     string,
     {
@@ -149,7 +144,7 @@ export function formatResults(
   >,
   opponentTypes: Types[]
 ): {
-  opponentData: PokemonStats;
+  opponentData: TeamMember;
   teamChoices: Record<
     string,
     {
@@ -160,7 +155,7 @@ export function formatResults(
   >;
 } {
   return {
-    opponentData: getStats(opponentTypes),
+    opponentData: { ...getStats(opponentTypes), monName: opponentName },
     teamChoices: results
   };
 }

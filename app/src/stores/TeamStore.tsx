@@ -8,7 +8,8 @@ export const useTeamStore = () => {
     types: [],
     team: {},
     defences: [],
-    offences: []
+    offences: [],
+    weaknesses: []
   });
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -38,7 +39,6 @@ export const useTeamStore = () => {
 
   const removeMember = async (memberId: number) => {
     const newTeam = await removeMemberById(teamData, memberId);
-    console.log(newTeam);
     setData(newTeam);
   };
 

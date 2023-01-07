@@ -75,8 +75,23 @@ export type TeamData = {
   team: Partial<Record<string, TeamMember>>;
   defences: string[];
   offences: string[];
+  weaknesses: string[];
 };
 
 export type TeamMember = PokemonStats & {
-  monName?: string;
+  monName: string;
+};
+
+export type MatchupTeamChoices = Record<
+  string,
+  {
+    offence: string[];
+    damageMultiplier: number;
+    resistances: string[];
+  }
+>;
+
+export type MatchupResult = {
+  opponentData: TeamMember;
+  teamChoices: MatchupTeamChoices;
 };

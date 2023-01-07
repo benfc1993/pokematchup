@@ -8,14 +8,16 @@ export const byName = (router: Router) =>
     '/name',
     async (
       req: ApiRequest<{
-        team: TeamData;
+        teamData: TeamData;
         name: string;
       }>,
       res
     ) => {
-      const { team, name } = req.body;
+      const { teamData, name } = req.body;
 
-      const newTeam = await matchupByName(team, name);
+      console.log(teamData);
+
+      const newTeam = await matchupByName(teamData, name);
 
       res.status(201).json(newTeam);
     }

@@ -22,7 +22,13 @@ const ClearButton = () => {
     <button
       className="form__button"
       onClick={() =>
-        setData({ types: [], team: {}, defences: [], offences: [] })
+        setData({
+          types: [],
+          team: {},
+          defences: [],
+          offences: [],
+          weaknesses: []
+        })
       }
     >
       Clear
