@@ -1,4 +1,4 @@
-import { useTeamStore, useTeamStoreContext } from '../../stores/TeamStore';
+import { useTeamStoreContext } from '../../stores/TeamStore';
 import { TypesList } from '../TypesList/TypesList';
 
 export const TeamSummary: React.FC = () => {

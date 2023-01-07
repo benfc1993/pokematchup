@@ -17,6 +17,7 @@ export const TypeIcon: React.FC<TypeIconProps> = (props) => {
     <img
       {...restProps}
       src={`/assets/type-icons/${type}.png`}
+      alt={type}
       className={`${styles['type-icon']} ${styles[`type-icon--${size}`]}`}
     />
   );

@@ -14,18 +14,18 @@ export const OpponentSelection = () => {
   useEffect(() => {
     const getMatchup = async (name: string) => {
       const response = await matchupByName(teamData, name);
-      console.log(response);
       setStore(response);
     };
     if (opponentName) getMatchup(opponentName);
-  }, [teamData]);
+  }, [teamData, opponentName, setStore]);
+
   const onChooseOpponent = useCallback(
     async (name: string) => {
       const response = await matchupByName(teamData, name);
 
       setStore(response);
     },
-    [teamData]
+    [teamData, setStore]
   );
 
   return <Autocomplete fuse={namesIndex} setSelection={onChooseOpponent} />;

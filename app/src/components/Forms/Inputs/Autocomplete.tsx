@@ -45,13 +45,13 @@ export const Autocomplete = <T,>(props: AutocompleteProps<T>) => {
     }));
   };
 
-  const handleSelection = () => {
+  const handleSelection = useCallback(() => {
     setSelection(inputState.results[inputState.activeIndex].item);
     resetState();
-  };
+  }, [inputState, setSelection]);
+
   const onKeyDown = useCallback(
     (e: KeyboardEvent) => {
-      console.log(inputState.focused);
       if (!inputState.focused) return;
       switch (e.code) {
         case 'Escape':
@@ -89,7 +89,7 @@ export const Autocomplete = <T,>(props: AutocompleteProps<T>) => {
           break;
       }
     },
-    [inputState]
+    [inputState, handleSelection]
   );
 
   useEffect(() => {
@@ -102,7 +102,6 @@ export const Autocomplete = <T,>(props: AutocompleteProps<T>) => {
   return (
     <div
       onMouseEnter={() => {
-        console.log('Mouse enter');
         setInputState((prevState) => ({
           ...prevState,
           focused: true,
@@ -112,8 +111,7 @@ export const Autocomplete = <T,>(props: AutocompleteProps<T>) => {
       onMouseLeave={() =>
         setInputState((prevState) => ({ ...prevState, hovered: false }))
       }
-      onBlur={(e) => {
-        console.log('Blur');
+      onBlur={() => {
         if (inputState.hovered) return;
         setInputState((prevState) => ({
           ...prevState,

@@ -15,9 +15,7 @@ export const Matchup: React.FC = () => {
           </div>
           <div></div>
           <div className={style.section}>
-            <div className="flex-column">
-              <OpponentSelection />
-            </div>
+            <OpponentSelection />
             <OpponentStats />
           </div>
         </div>

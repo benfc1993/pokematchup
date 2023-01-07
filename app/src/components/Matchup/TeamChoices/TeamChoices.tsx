@@ -18,13 +18,15 @@ export const TeamChoices = () => {
           const name = teamMembers[idx]?.monName;
           const choiceData = teamChoices && name ? teamChoices[name] : null;
           return teamMembers[idx] ? (
-            <div className="grid-item">
+            <div
+              key={`${teamMembers[idx]?.monName}-${idx}`}
+              className="grid-item"
+            >
               <MemberCard
                 selected={
                   teamChoices !== null &&
                   (teamMembers[idx]?.monName as string) in teamChoices
                 }
-                key={teamMembers[idx]?.monName}
                 onRemoveClicked={() => removeMember(idx)}
                 member={teamMembers[idx] as TeamMember}
               />
@@ -57,8 +59,8 @@ export const TeamChoices = () => {
               )}
             </div>
           ) : (
-            <div className="grid-item">
-              <EmptyCard key={idx} />
+            <div key={`empty-${idx}`} className="grid-item">
+              <EmptyCard />
             </div>
           );
         })}
