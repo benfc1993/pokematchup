@@ -25,7 +25,7 @@
   "scripts": {
     "lint": "eslint",
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "yarn && react-scripts build",
     "watch": "node scripts/watch.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
