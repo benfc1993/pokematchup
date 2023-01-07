@@ -1,11 +1,12 @@
 import { TeamData } from '../shared/types';
+import { baseUrl } from './api';
 
 export const addMemberByType = async (
   teamData: TeamData,
   types: number[],
   name: string
 ) => {
-  const response = await fetch('/team/add/types', {
+  const response = await fetch(`${baseUrl}/team/add/types`, {
     method: 'POST',
     body: JSON.stringify({
       teamData,
@@ -22,7 +23,7 @@ export const addMemberByType = async (
 };
 
 export const addMemberByName = async (teamData: TeamData, name: string) => {
-  const response = await fetch('/team/add/name', {
+  const response = await fetch(`${baseUrl}/team/add/name`, {
     method: 'POST',
     body: JSON.stringify({
       teamData,
