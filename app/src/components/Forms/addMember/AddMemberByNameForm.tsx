@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useTeamStoreContext } from '../stores/TeamStore';
-import './styles.css';
+import { useTeamStoreContext } from '../../../stores/TeamStore';
+import '../formStyles.scss';
 
 interface FormState {
   name: string;
   requestCompleted: boolean;
   error: string | null;
+  success: string | null;
 }
 
 export const AddMemberByNameForm = () => {
@@ -14,30 +15,28 @@ export const AddMemberByNameForm = () => {
   const [formState, setFormState] = useState<FormState>({
     name: '',
     requestCompleted: true,
-    error: null
+    error: null,
+    success: null
   });
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setFormState((prevState) => ({
-      ...prevState,
-      requestCompleted: false,
-      error: null
-    }));
 
     await addByName(formState.name)
       .then(() => {
         setFormState((prevState) => ({
-          ...prevState,
+          name: '',
           requestCompleted: true,
-          error: null
+          error: null,
+          success: `${prevState.name} added to team`
         }));
       })
       .catch((error) => {
         setFormState((prevState) => ({
-          ...prevState,
+          name: '',
           requestCompleted: true,
-          error: error.status === 404 ? 'Pokemon not Found' : 'Invalid'
+          error: error.status === 404 ? 'Pokemon not Found' : 'Invalid',
+          success: null
         }));
       });
   };
@@ -47,7 +46,8 @@ export const AddMemberByNameForm = () => {
 
     setFormState((prevState) => ({
       ...prevState,
-      name: value
+      name: value,
+      success: null
     }));
   };
 
@@ -62,10 +62,16 @@ export const AddMemberByNameForm = () => {
   return (
     <div>
       <form className="form" onSubmit={handleSubmit}>
+        {formState.success && <p>{formState.success}</p>}
         {formState.error && <p>{formState.error}</p>}
         <label className="form__label w-100">
           <p>Name:</p>
-          <input className="form__input" type="input" onChange={handleChange} />
+          <input
+            className="form__input"
+            type="input"
+            onChange={handleChange}
+            value={formState.name}
+          />
         </label>
         <button
           disabled={!formState.requestCompleted}

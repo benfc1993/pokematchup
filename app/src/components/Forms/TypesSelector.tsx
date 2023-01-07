@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { types } from '../shared/types';
-import './styles.css';
+import { types } from '../../shared/types';
+import './formStyles.scss';
 
 interface TypesSelectorsState {
   primaryType: number;

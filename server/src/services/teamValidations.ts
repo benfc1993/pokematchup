@@ -6,7 +6,7 @@ type Team = Types[][];
 
 export type TeamData = {
   types: Team;
-  team: Partial<Record<string, TeamMember>>;
+  team: Record<string, TeamMember>;
   defences: string[];
   offences: string[];
 };

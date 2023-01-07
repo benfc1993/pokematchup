@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { TypesSelectors } from './TypesSelector';
-import './styles.css';
-import { useTeamStoreContext } from '../stores/TeamStore';
+import { TypesSelectors } from '../TypesSelector';
+import { useTeamStoreContext } from '../../../stores/TeamStore';
+import '../formStyles.scss';
 
 interface FormState {
   primaryType: string;
@@ -48,7 +48,12 @@ export const AddMemberByTypeForm = () => {
       <form className="form" onSubmit={handleSubmit}>
         <label className="form__label w-100">
           <p>Name:</p>
-          <input className="form__input" type="input" name="name" onChange={handleChange} />
+          <input
+            className="form__input"
+            type="input"
+            name="name"
+            onChange={handleChange}
+          />
         </label>
 
         <TypesSelectors onTypesChanged={handleChange} />

@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { getPokemonTypes } from '../../../services/getPokemon';
 import { TeamData, validateTeam } from '../../../services/teamValidations';
+import { sentenceCase } from '../../../services/utils';
 import { ApiRequest } from '../../types';
 
 export const addMemberByName = (router: Router) =>
@@ -27,7 +28,7 @@ export const addMemberByName = (router: Router) =>
       try {
         const types = await getPokemonTypes(name);
         currentTeam.types.push(types);
-        names.push(name);
+        names.push(sentenceCase(name));
 
         const newTeam = validateTeam(currentTeam.types, names);
 

@@ -65,13 +65,18 @@ export type PokemonStats = {
   weakness: string[];
   offence: string[];
   resistances: string[];
+  types: string[];
 };
 
 type Team = Types[][];
 
 export type TeamData = {
   types: Team;
-  team: Partial<Record<string, PokemonStats & { monName: string }>>;
+  team: Partial<Record<string, TeamMember>>;
   defences: string[];
   offences: string[];
+};
+
+export type TeamMember = PokemonStats & {
+  monName?: string;
 };

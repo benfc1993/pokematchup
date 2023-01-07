@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { addMemberByName, addMemberByType } from '../api/addMember';
+import { removeMemberById } from '../api/removeMemberById';
 import { TeamData } from '../shared/types';
 
 export const useTeamStore = () => {
@@ -35,11 +36,18 @@ export const useTeamStore = () => {
     setData(newTeam);
   };
 
+  const removeMember = async (memberId: number) => {
+    const newTeam = await removeMemberById(teamData, memberId);
+    console.log(newTeam);
+    setData(newTeam);
+  };
+
   return {
     teamData,
     setData: (newTeamData: TeamData) => setData(newTeamData),
     addByType: async (types: number[], name: string) => addByType(types, name),
     addByName: async (name: string) => addByName(name),
+    removeMember: (memberId: number) => removeMember(memberId),
     loading
   };
 };

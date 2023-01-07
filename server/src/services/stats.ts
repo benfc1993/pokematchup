@@ -1,4 +1,4 @@
-import { typesSetToNames } from './conversions';
+import { typesSetToNames, typesToNames } from './conversions';
 import { matchups, Types } from './perms';
 
 export type PokemonStats = {
@@ -6,6 +6,7 @@ export type PokemonStats = {
   weakness: string[];
   offence: string[];
   resistances: string[];
+  types: string[];
 };
 
 export const getStats = (types: Types[]): PokemonStats => {
@@ -40,7 +41,8 @@ export const getStats = (types: Types[]): PokemonStats => {
     weakness: typesSetToNames(weaknesses),
     defence: typesSetToNames(defences),
     offence: typesSetToNames(offences),
-    resistances: typesSetToNames(resistances)
+    resistances: typesSetToNames(resistances),
+    types: typesToNames(types)
   };
 };
 
