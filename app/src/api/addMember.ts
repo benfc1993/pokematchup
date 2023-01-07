@@ -6,7 +6,7 @@ export const addMemberByType = async (
   types: number[],
   name: string
 ) => {
-  const response = await fetch(`${baseUrl}/team/add/types`, {
+  const response = await fetch(`/team/add/types`, {
     method: 'POST',
     body: JSON.stringify({
       teamData,
@@ -23,7 +23,7 @@ export const addMemberByType = async (
 };
 
 export const addMemberByName = async (teamData: TeamData, name: string) => {
-  const response = await fetch(`${baseUrl}/team/add/name`, {
+  const response = await fetch(`/team/add/name`, {
     method: 'POST',
     body: JSON.stringify({
       teamData,

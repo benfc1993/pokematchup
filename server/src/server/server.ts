@@ -14,7 +14,7 @@ export let cache: Cache;
 export const app = express();
 app.use(cors());
 app.use(express.json());
-// app.use(express.static(path.resolve(__dirname, '../../../app/build')));
+app.use(express.static(path.resolve(__dirname, '../../../app/build')));
 
 app.get('/', (req, res) => {
   res.statusCode = 200;
@@ -24,10 +24,11 @@ app.get('/', (req, res) => {
 
 app.use('/team', teamRouter);
 app.use('/matchup', matchupsRouter);
+app.use(express.static(path.resolve(__dirname, '../../../app/public')));
 
-// app.get('*', (req, res) => {
-//   res.sendFile(path.resolve(__dirname, '../../../app/public/index.html'));
-// });
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '../../../app/build/index.html'));
+});
 
 const PORT = process.env.PORT || 3001;
 

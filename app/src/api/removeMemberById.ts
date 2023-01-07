@@ -5,7 +5,7 @@ export const removeMemberById = async (
   teamData: TeamData,
   memberIndex: number
 ) => {
-  const response = await fetch(`${baseUrl}/team/remove`, {
+  const response = await fetch(`/team/remove`, {
     method: 'POST',
     body: JSON.stringify({
       teamData,

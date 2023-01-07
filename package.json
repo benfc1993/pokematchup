@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build-client": "cd app && yarn build",
     "build-server": "cd server && yarn build",
+    "build": "yarn build-client && yarn build-server",
     "start": "yarn build-client && yarn build-server && cd server && yarn start"
   },
   "repository": {

@@ -5,7 +5,7 @@ export const matchupByName = async (
   teamData: TeamData,
   name: string
 ): Promise<MatchupResult> => {
-  const response = await fetch(`${baseUrl}/matchup/name`, {
+  const response = await fetch(`/matchup/name`, {
     method: 'POST',
     body: JSON.stringify({
       teamData,

@@ -1,9 +1,8 @@
-import { RouterProvider } from 'react-router-dom';
-import './App.scss';
+import { RouterProvider, useNavigate } from 'react-router-dom';
 import { router } from './Router';
+import './App.scss';
 
 function App() {
-  console.log(process.env.ENV);
   return (
     <div className="App">
       <RouterProvider router={router} />

@@ -1,5 +1,4 @@
 import { createBrowserRouter, Outlet } from 'react-router-dom';
-import { AddMember } from './pages/AddMember';
 import { TeamStoreProvider } from './stores/TeamStore';
 import { TeamBalancer } from './pages/TeamBalancer';
 import { Matchup } from './pages/Matchup';
@@ -16,15 +15,11 @@ export const router = createBrowserRouter([
     ),
     children: [
       {
-        path: '/team',
+        path: '/team-balancer',
         element: <TeamBalancer />
       },
       {
-        path: '/team/add',
-        element: <AddMember />
-      },
-      {
-        path: '/matchup',
+        path: '/team-matchup',
         element: <Matchup />
       }
     ]
