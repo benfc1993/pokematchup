@@ -6,15 +6,15 @@ export const TeamSummary: React.FC = () => {
   return (
     teamData && (
       <>
-        <div className="flex-column align-center">
+        <div className="flex-column align-center w-100">
           <h3>Defences:</h3>
           <TypesList list={teamData.defences} />
         </div>
-        <div className="flex-column align-center">
+        <div className="flex-column align-center  w-100">
           <h3>Offences:</h3>
           <TypesList list={teamData.offences} />
         </div>
-        <div className="flex-column align-center">
+        <div className="flex-column align-center  w-100">
           <h3>Weaknesses:</h3>
           <TypesList list={teamData.weaknesses} />
         </div>

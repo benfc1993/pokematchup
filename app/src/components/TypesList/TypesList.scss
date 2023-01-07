@@ -1,0 +1,11 @@
+.types-list {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    @media(min-width: 620px) {
+        display: grid;
+        grid-template-columns: repeat(9, 1fr);
+        width: min-content;
+    }
+}

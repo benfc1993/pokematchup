@@ -1,5 +1,6 @@
 import { types } from '../../shared/types';
 import { TypeIcon } from '../TypeIcon/TypeIcon';
+import './TypesList.scss';
 
 type TypesListProps = {
   list: string[];
@@ -11,10 +12,7 @@ export const TypesList: React.FC<TypesListProps> = (props) => {
   const { list, size, showAll = true } = props;
 
   return (
-    <div
-      className={`${showAll ? 'types-list' : 'd-flex justify-center'}`}
-      style={{ flexWrap: 'wrap' }}
-    >
+    <div className={`${showAll ? 'types-list' : 'd-flex justify-center'}`}>
       {types.sort().map((type, idx) => {
         const display = showAll || list.includes(type);
         return (
