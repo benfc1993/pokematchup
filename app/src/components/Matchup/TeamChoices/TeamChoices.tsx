@@ -28,7 +28,6 @@ export const TeamChoices = () => {
             >
               <div
                 style={{
-                  height: '100%',
                   display: 'flex',
                   flexDirection: 'column'
                 }}

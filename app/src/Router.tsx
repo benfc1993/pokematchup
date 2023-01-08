@@ -1,6 +1,6 @@
 import { createBrowserRouter, Outlet } from 'react-router-dom';
 import { TeamStoreProvider } from './stores/TeamStore';
-import { TeamBalancer } from './pages/TeamBalancer';
+import { TeamBalancer } from './pages/TeamBalancer/TeamBalancer';
 import { Matchup } from './pages/Matchup/Matchup';
 import { NavBar } from './components/Nav/NavBar';
 

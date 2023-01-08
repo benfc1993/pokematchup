@@ -15,8 +15,8 @@ export const Matchup: React.FC = () => {
           </div>
           <div></div>
           <div className={`${style.section} opponent`}>
-            <OpponentSelection />
             <OpponentStats />
+            <OpponentSelection />
           </div>
         </div>
       </div>
