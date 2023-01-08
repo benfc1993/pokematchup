@@ -10,8 +10,12 @@
         height: 2em;
     }
     &--medium {
-        width: 4em;
-        height: 4em;
+        width: 2em;
+        height: 2em;
+        @media(min-width: 1080px) {
+            width: 4em;
+            height: 4em;
+        }
     }
     &--large {
         width: 6em;

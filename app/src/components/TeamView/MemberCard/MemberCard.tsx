@@ -12,6 +12,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import { PokemonStats } from '../../PokemonStats/PokemonStats';
+import { TypesList } from '../../TypesList/TypesList';
 
 type MemberCardProps = {
   selected?: boolean;
@@ -50,7 +51,10 @@ export const MemberCard: React.FC<MemberCardProps> = (props) => {
         <div className="member-card__close" onClick={() => onRemoveClicked()}>
           <FontAwesomeIcon icon={faXmark} />
         </div>
-        <h3>{member.monName}</h3>
+        <div className="d-flex justify-center align-center">
+          <h3 style={{ marginRight: '1em' }}>{member.monName}</h3>
+          <TypesList list={member.types} showAll={false} size={'small'} />
+        </div>
       </div>
       {children && children}
       <>
@@ -66,7 +70,12 @@ export const MemberCard: React.FC<MemberCardProps> = (props) => {
             className="member-card__stats"
             style={{ display: hidden ? 'none' : 'block' }}
           >
-            <PokemonStats stats={member} showHints={true} iconSize={'small'} />
+            <PokemonStats
+              stats={member}
+              showHints={true}
+              iconSize={'small'}
+              exclude={['types']}
+            />
             {canHideTypes && !hidden && (
               <div
                 style={{

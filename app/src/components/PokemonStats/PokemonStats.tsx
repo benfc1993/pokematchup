@@ -9,6 +9,7 @@ type Stats = Record<StatOrder, string[]>;
 
 interface PokemonStatsProps<T extends Stats> {
   stats: T;
+  exclude?: StatOrder[];
   showHints?: boolean;
   iconSize?: TypeIconSize;
 }
@@ -31,15 +32,19 @@ const hints: Partial<Record<StatOrder, string>> = {
 };
 
 export const PokemonStats = <T extends Stats>(props: PokemonStatsProps<T>) => {
-  const { stats, showHints = false, iconSize = 'medium' } = props;
+  const { stats, showHints = false, iconSize = 'medium', exclude = [] } = props;
+  let count = 0;
   return (
     <>
-      {statOrder.map((stat, idx) => {
+      {statOrder.map((stat) => {
         const statData: string[] = stats[stat];
+        const show = statData instanceof Array && !exclude.includes(stat);
+        if (show) count++;
+
         return (
-          statData instanceof Array && (
+          show && (
             <div key={stat} className="pokemon__stat">
-              {idx > 0 && <FontAwesomeIcon icon={faMinus} />}
+              {count > 1 && <FontAwesomeIcon icon={faMinus} />}
               <div style={{ marginBottom: '0.5em' }}>
                 <p style={{ fontSize: '1.1rem', fontWeight: 'bold' }}>
                   {sentenceCase(stat)}
