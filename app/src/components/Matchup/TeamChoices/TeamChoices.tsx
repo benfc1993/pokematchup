@@ -37,34 +37,35 @@ export const TeamChoices = () => {
                   })}
                   onRemoveClicked={() => removeMember(idx)}
                   member={teamMembers[idx] as TeamMember}
-                />
-                {choiceData && (
-                  <div className={`flex-column ${style['choice-info']}`}>
-                    <p className={`text-left ${style['choice-info__item']}`}>
-                      damage multiplier: {choiceData.damageMultiplier}
-                    </p>
-                    <div
-                      className={`d-flex align-center  ${style['choice-info__item']}`}
-                    >
-                      <p style={{ marginRight: '1em' }}>resistances:</p>
-                      <TypesList
-                        list={choiceData?.resistances}
-                        showAll={false}
-                        size={'small'}
-                      />
+                >
+                  {choiceData && (
+                    <div className={`flex-column ${style['choice-info']}`}>
+                      <p className={`text-left ${style['choice-info__item']}`}>
+                        damage multiplier: {choiceData.damageMultiplier}
+                      </p>
+                      <div
+                        className={`d-flex align-center  ${style['choice-info__item']}`}
+                      >
+                        <p style={{ marginRight: '1em' }}>resistances:</p>
+                        <TypesList
+                          list={choiceData?.resistances}
+                          showAll={false}
+                          size={'small'}
+                        />
+                      </div>
+                      <div
+                        className={`d-flex align-center  ${style['choice-info__item']}`}
+                      >
+                        <p style={{ marginRight: '1em' }}>offence:</p>
+                        <TypesList
+                          list={choiceData?.offence}
+                          showAll={false}
+                          size={'small'}
+                        />
+                      </div>
                     </div>
-                    <div
-                      className={`d-flex align-center  ${style['choice-info__item']}`}
-                    >
-                      <p style={{ marginRight: '1em' }}>offence:</p>
-                      <TypesList
-                        list={choiceData?.offence}
-                        showAll={false}
-                        size={'small'}
-                      />
-                    </div>
-                  </div>
-                )}
+                  )}
+                </MemberCard>
               </div>
             </div>
           ) : (

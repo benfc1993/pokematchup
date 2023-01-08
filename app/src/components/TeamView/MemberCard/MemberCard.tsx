@@ -15,6 +15,7 @@ type MemberCardProps = {
   selected?: boolean;
   member: TeamMember;
   onRemoveClicked: () => void;
+  children?: React.ReactNode;
 };
 
 const statOrder: Omit<keyof TeamMember, 'monName'>[] = [
@@ -32,7 +33,7 @@ const hints: Partial<Record<keyof TeamMember, string>> = {
 };
 
 export const MemberCard: React.FC<MemberCardProps> = (props) => {
-  const { selected, member, onRemoveClicked } = props;
+  const { selected, member, onRemoveClicked, children = null } = props;
   return (
     <div className="member-card">
       <div className="member-card__title">
@@ -53,11 +54,7 @@ export const MemberCard: React.FC<MemberCardProps> = (props) => {
         </div>
         <h3>{member.monName}</h3>
       </div>
-      {/* <div className="member-card__icons">
-        {member.types.map((type) => (
-          <TypeIcon key={type} type={type} size={'small'} />
-        ))}
-      </div> */}
+      {children && children}
 
       <div className="member-card__stats" style={{}}>
         {statOrder.map((stat, idx) => {

@@ -41,7 +41,8 @@ export const Autocomplete = <T,>(props: AutocompleteProps<T>) => {
     setInputState((prevState) => ({ ...prevState, value: event.target.value }));
     setInputState((prevState) => ({
       ...prevState,
-      results: fuse.search(event.target.value)
+      results: fuse.search(event.target.value),
+      focused: true
     }));
   };
 
