@@ -50,7 +50,7 @@ export const TeamChoices = () => {
                         {choiceData.damageMultiplier > 0 &&
                         choiceData.damageMultiplier < 1
                           ? `1/${1 / choiceData.damageMultiplier}`
-                          : 1}
+                          : choiceData.damageMultiplier}
                       </p>
                       <div
                         className={`d-flex align-center  ${style['choice-info__item']}`}
