@@ -28,5 +28,10 @@ export const OpponentSelection = () => {
     [teamData, setStore]
   );
 
-  return <Autocomplete fuse={namesIndex} setSelection={onChooseOpponent} />;
+  return (
+    <label>
+      <h2>Opponent</h2>
+      <Autocomplete fuse={namesIndex} setSelection={onChooseOpponent} />
+    </label>
+  );
 };

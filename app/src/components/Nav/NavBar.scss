@@ -1,0 +1,33 @@
+.nav{
+    display: flex;
+    justify-content: center;
+    padding: 0 15px;
+    // background-color: rgba(60,183,255,0.02);
+
+    &__item {
+    padding: 10px 25px;
+    color: #e5e5e5;
+    text-decoration: none;
+    margin: 0 1em;
+    border-bottom: hsla(0, 0%, 29%, 0.349) 2px solid;
+    transition: ease 0.25s;
+    position: relative;
+
+    &:hover, &.active {
+        border-bottom: cyan 2px solid;
+    }
+    
+    &:hover {
+        background-color: rgba(255,255,255,0.04);
+    }
+    }
+    &__title {
+        position: absolute;
+        left: 25px;
+        margin: 0;
+        display: none;
+        @media (min-width: 768px) {
+            display: block;
+        }
+    }
+}

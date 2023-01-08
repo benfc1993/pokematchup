@@ -1,5 +1,4 @@
 import { MatchupResult, TeamData } from '../shared/types';
-import { baseUrl } from './api';
 
 export const matchupByName = async (
   teamData: TeamData,

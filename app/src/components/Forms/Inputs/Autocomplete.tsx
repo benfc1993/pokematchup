@@ -123,11 +123,18 @@ export const Autocomplete = <T,>(props: AutocompleteProps<T>) => {
       }}
       className={styles.autocomplete}
     >
-      <input
-        className={`form__input ${styles.input}`}
-        value={inputState.value}
-        onChange={handleChange}
-      />
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleSelection();
+        }}
+      >
+        <input
+          className={`form__input ${styles.input}`}
+          value={inputState.value}
+          onChange={handleChange}
+        />
+      </form>
       {inputState.results && (
         <ul className={styles.suggestions}>
           {inputState.results.map((result, idx) => (

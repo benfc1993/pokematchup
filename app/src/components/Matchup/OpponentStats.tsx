@@ -7,17 +7,17 @@ export const OpponentStats = () => {
   return (
     opponentData && (
       <>
-        <h3>{opponentData.monName}</h3>
+        <h2>{opponentData.monName}</h2>
 
         <TypesList list={opponentData.types} showAll={false} />
-        <h2>Offence</h2>
+        <h3>Offence</h3>
         <TypesList list={opponentData.offence} showAll={false} />
-        <h2>Defence</h2>
+        <h3>Defence</h3>
         <TypesList list={opponentData.defence} showAll={false} />
 
-        <h2>Weaknesses</h2>
+        <h3>Weaknesses</h3>
         <TypesList list={opponentData.weakness} showAll={false} />
-        <h2>Resistances</h2>
+        <h3>Resistances</h3>
         <TypesList list={opponentData.resistances} showAll={false} />
       </>
     )

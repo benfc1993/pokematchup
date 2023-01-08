@@ -1,5 +1,4 @@
 import { TeamData } from '../shared/types';
-import { baseUrl } from './api';
 
 export const removeMemberById = async (
   teamData: TeamData,

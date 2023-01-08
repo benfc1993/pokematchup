@@ -4,7 +4,7 @@ import './TypesList.scss';
 
 type TypesListProps = {
   list: string[];
-  size?: 'small' | 'medium' | 'large';
+  size?: 'xsmall' | 'small' | 'medium' | 'large';
   showAll?: boolean;
 };
 
@@ -12,7 +12,11 @@ export const TypesList: React.FC<TypesListProps> = (props) => {
   const { list, size, showAll = true } = props;
 
   return (
-    <div className={`${showAll ? 'types-list' : 'd-flex justify-center'}`}>
+    <div
+      className={`${
+        showAll ? 'types-list' : 'd-flex justify-center flex-wrap'
+      }`}
+    >
       {types.sort().map((type, idx) => {
         const display = showAll || list.includes(type);
         return (

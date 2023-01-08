@@ -28,7 +28,6 @@ export const AddMemberByNameForm: React.FC = () => {
       error: null,
       success: null
     };
-    console.log(name);
 
     await addByName(name)
       .then(() => {

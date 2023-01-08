@@ -1,6 +1,10 @@
 .type-icon {
     width: 5em;
     height: 5em;
+    &--xsmall {
+        width: 1.7em;
+        height: 1.7em;
+    }
     &--small {
         width: 2em;
         height: 2em;

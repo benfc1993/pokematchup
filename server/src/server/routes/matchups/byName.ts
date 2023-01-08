@@ -15,8 +15,6 @@ export const byName = (router: Router) =>
     ) => {
       const { teamData, name } = req.body;
 
-      console.log(name);
-
       const newTeam = await matchupByName(teamData, name);
 
       res.status(201).json(newTeam);

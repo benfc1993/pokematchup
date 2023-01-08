@@ -7,7 +7,7 @@ type TypeIconProps = React.DetailedHTMLProps<
   HTMLImageElement
 > & {
   type: string;
-  size?: 'small' | 'medium' | 'large';
+  size?: 'xsmall' | 'small' | 'medium' | 'large';
 };
 
 export const TypeIcon: React.FC<TypeIconProps> = (props) => {

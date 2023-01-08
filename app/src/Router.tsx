@@ -1,7 +1,8 @@
 import { createBrowserRouter, Outlet } from 'react-router-dom';
 import { TeamStoreProvider } from './stores/TeamStore';
 import { TeamBalancer } from './pages/TeamBalancer';
-import { Matchup } from './pages/Matchup';
+import { Matchup } from './pages/Matchup/Matchup';
+import { NavBar } from './components/Nav/NavBar';
 
 export const router = createBrowserRouter([
   {
@@ -9,6 +10,7 @@ export const router = createBrowserRouter([
     element: (
       <>
         <TeamStoreProvider>
+          <NavBar />
           <Outlet />
         </TeamStoreProvider>
       </>
