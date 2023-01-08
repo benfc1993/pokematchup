@@ -1,5 +1,3 @@
-import { faMinus } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { sentenceCase } from '../../utils.ts/sentenceCase';
 import { TypeIconSize } from '../TypeIcon/TypeIcon';
 import { TypesList } from '../TypesList/TypesList';
@@ -38,14 +36,16 @@ export const PokemonStats = <T extends Stats>(props: PokemonStatsProps<T>) => {
     <>
       {statOrder.map((stat) => {
         const statData: string[] = stats[stat];
-        const show = statData instanceof Array && !exclude.includes(stat);
+        const show =
+          statData instanceof Array &&
+          !exclude.includes(stat) &&
+          statData.length > 0;
         if (show) count++;
 
         return (
           show && (
             <div key={stat} className="pokemon__stat">
-              {count > 1 && <FontAwesomeIcon icon={faMinus} />}
-              <div style={{ marginBottom: '0.5em' }}>
+              <div style={{ marginRight: '1em' }}>
                 <p style={{ fontSize: '1.1rem', fontWeight: 'bold' }}>
                   {sentenceCase(stat)}
                 </p>
@@ -53,7 +53,14 @@ export const PokemonStats = <T extends Stats>(props: PokemonStatsProps<T>) => {
                   <p style={{ fontSize: '0.7em' }}>{hints[stat]}</p>
                 )}
               </div>
-              <TypesList list={statData} showAll={false} size={iconSize} />
+              <div></div>
+              {/* {count > 1 && <FontAwesomeIcon icon={faMinus} />} */}
+              <TypesList
+                list={statData}
+                showAll={false}
+                size={iconSize}
+                align={'start'}
+              />
             </div>
           )
         );

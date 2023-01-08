@@ -1,8 +1,16 @@
 .pokemon {
 
     &__stat {
-        margin-bottom: 0.4em;
+        padding: 0.3em 0;
         color: #afaba5;
+        display: grid;
+        grid-template-columns: 1fr 20px 1fr;
+        text-align: left;
+        width: 100%;
+        align-items: center;
+        &:not(:last-of-type) {
+            border-bottom: 2px solid #afaba533;
+        }
     }
 
 }

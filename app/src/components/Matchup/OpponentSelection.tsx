@@ -160,7 +160,7 @@ export const OpponentSelection = () => {
       <div
         style={{
           display: formState.showForm ? 'none' : 'block',
-          margin: '1em 0'
+          marginTop: '1em'
         }}
       >
         <button

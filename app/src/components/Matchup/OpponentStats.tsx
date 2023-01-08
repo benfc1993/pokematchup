@@ -6,10 +6,10 @@ export const OpponentStats = () => {
 
   return (
     opponentData && (
-      <>
+      <div style={{ padding: '0 1em' }}>
         {opponentData.monName && <h2>{opponentData.monName}</h2>}
         <PokemonStats stats={opponentData} iconSize={'small'} />
-      </>
+      </div>
     )
   );
 };

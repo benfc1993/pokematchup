@@ -6,15 +6,16 @@ type TypesListProps = {
   list: string[];
   size?: TypeIconSize;
   showAll?: boolean;
+  align?: 'start' | 'center' | 'end';
 };
 
 export const TypesList: React.FC<TypesListProps> = (props) => {
-  const { list, size, showAll = true } = props;
+  const { list, size, showAll = true, align = 'center' } = props;
 
   return (
     <div
       className={`${
-        showAll ? 'types-list' : 'd-flex justify-center flex-wrap'
+        showAll ? 'types-list' : `d-flex justify-${align} flex-wrap`
       }`}
     >
       {types.sort().map((type, idx) => {
