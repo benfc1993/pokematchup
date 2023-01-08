@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { namesToTypes } from '../../../services/conversions';
 import { matchupByTypes } from '../../../services/getPokemon';
 import { Types } from '../../../services/perms';
 import { TeamData } from '../../../services/teamValidations';
@@ -9,15 +10,15 @@ export const byType = (router: Router) =>
     '/type',
     async (
       req: ApiRequest<{
-        team: TeamData;
-        opponentTypes: Types[];
-      }>, 
+        teamData: TeamData;
+        types: string[];
+      }>,
       res
     ) => {
-      const { team, opponentTypes } = req.body;
+      const { teamData, types } = req.body;
 
-      const newTeam = await matchupByTypes(team, opponentTypes);
-
-      res.status(201).json(newTeam);
+      await matchupByTypes(teamData, namesToTypes(types))
+        .then((newTeam) => res.status(201).json(newTeam))
+        .catch((error) => res.status(404).send('Pokemon not found'));
     }
   );

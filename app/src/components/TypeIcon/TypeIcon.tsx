@@ -2,12 +2,13 @@ import React from 'react';
 
 import styles from './TypeIcon.module.scss';
 
+export type TypeIconSize = 'xsmall' | 'small' | 'medium' | 'large';
 type TypeIconProps = React.DetailedHTMLProps<
   React.ImgHTMLAttributes<HTMLImageElement>,
   HTMLImageElement
 > & {
   type: string;
-  size?: 'xsmall' | 'small' | 'medium' | 'large';
+  size?: TypeIconSize;
 };
 
 export const TypeIcon: React.FC<TypeIconProps> = (props) => {

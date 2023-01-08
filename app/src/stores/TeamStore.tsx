@@ -27,7 +27,7 @@ export const useTeamStore = () => {
     setTeamData(newTeamData);
   };
 
-  const addByType = async (types: number[], name: string) => {
+  const addByType = async (types: string[], name: string) => {
     const newTeam = await addMemberByType(teamData, types, name);
     setData(newTeam);
   };
@@ -45,7 +45,7 @@ export const useTeamStore = () => {
   return {
     teamData,
     setData: (newTeamData: TeamData) => setData(newTeamData),
-    addByType: async (types: number[], name: string) => addByType(types, name),
+    addByType: async (types: string[], name: string) => addByType(types, name),
     addByName: async (name: string) => addByName(name),
     removeMember: (memberId: number) => removeMember(memberId),
     loading

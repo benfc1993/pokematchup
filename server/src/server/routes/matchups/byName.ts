@@ -15,8 +15,8 @@ export const byName = (router: Router) =>
     ) => {
       const { teamData, name } = req.body;
 
-      const newTeam = await matchupByName(teamData, name);
-
-      res.status(201).json(newTeam);
+      await matchupByName(teamData, name)
+        .then((newTeam) => res.status(201).json(newTeam))
+        .catch((error) => res.status(404).send('Pokemon not found'));
     }
   );

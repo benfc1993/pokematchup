@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { namesToTypes } from '../../../services/conversions';
 import { TeamData, validateTeam } from '../../../services/teamValidations';
 import { sentenceCase } from '../../../services/utils';
 import { ApiRequest } from '../../types';
@@ -9,7 +10,7 @@ export const addMemberByTypes = (router: Router) =>
     async (
       req: ApiRequest<{
         teamData: TeamData;
-        types: number[];
+        types: string[];
         name: string;
       }>,
       res
@@ -27,7 +28,7 @@ export const addMemberByTypes = (router: Router) =>
         (member) => member?.monName ?? ''
       );
 
-      currentTeam.types.push(types);
+      currentTeam.types.push(namesToTypes(types));
       names.push(sentenceCase(name));
 
       const newTeam = validateTeam(currentTeam.types, names);

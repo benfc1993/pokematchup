@@ -2,27 +2,30 @@ import { useState } from 'react';
 import { types } from '../../shared/types';
 import './formStyles.scss';
 
-interface TypesSelectorsState {
-  primaryType: number;
-  secondaryType: number;
-}
+export type TypesSelectorsState = {
+  primaryType: string;
+  secondaryType: string;
+};
 
 interface TypesSelectorsProps {
-  onTypesChanged: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  onTypesChanged: (types: TypesSelectorsState) => void;
+  initialValue?: TypesSelectorsState;
 }
 
 export const TypesSelectors: React.FC<TypesSelectorsProps> = (props) => {
-  const { onTypesChanged } = props;
+  const { onTypesChanged, initialValue } = props;
 
-  const [formState, setFormState] = useState<TypesSelectorsState>({
-    primaryType: -1,
-    secondaryType: -1
-  });
+  const [formState, setFormState] = useState<TypesSelectorsState>(
+    initialValue || {
+      primaryType: '',
+      secondaryType: ''
+    }
+  );
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = event.target;
-    setFormState((prevState) => ({ ...prevState, [name]: parseInt(value) }));
-    onTypesChanged(event);
+    onTypesChanged({ ...formState, [name]: value });
+    setFormState((prevState) => ({ ...prevState, [name]: value }));
   };
 
   return (
@@ -36,8 +39,8 @@ export const TypesSelectors: React.FC<TypesSelectorsProps> = (props) => {
           onChange={handleChange}
         >
           <option value="-1">Select a type</option>
-          {types.map((type, idx) => (
-            <option key={type} value={idx}>
+          {types.map((type) => (
+            <option key={type} value={type}>
               {type}
             </option>
           ))}
@@ -52,10 +55,10 @@ export const TypesSelectors: React.FC<TypesSelectorsProps> = (props) => {
           value={formState.secondaryType}
           onChange={handleChange}
         >
-          <option value="-1">Select a type</option>
-          {types.map((type, idx) =>
-            idx !== formState.primaryType ? (
-              <option key={type} value={idx}>
+          <option value="-1">None</option>
+          {types.map((type) =>
+            type !== formState.primaryType ? (
+              <option key={type} value={type}>
                 {type}
               </option>
             ) : null

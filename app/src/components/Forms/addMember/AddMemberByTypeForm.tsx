@@ -1,11 +1,9 @@
-import { useState } from 'react';
-import { TypesSelectors } from '../TypesSelector';
+import React, { useState } from 'react';
+import { TypesSelectors, TypesSelectorsState } from '../TypesSelector';
 import { useTeamStoreContext } from '../../../stores/TeamStore';
 import '../formStyles.scss';
 
-interface FormState {
-  primaryType: string;
-  secondaryType: string;
+interface FormState extends TypesSelectorsState {
   name: string;
   requestCompleted: boolean;
 }
@@ -13,18 +11,15 @@ interface FormState {
 export const AddMemberByTypeForm = () => {
   const { addByType } = useTeamStoreContext();
   const [formState, setFormState] = useState<FormState>({
-    primaryType: '-1',
-    secondaryType: '-1',
+    primaryType: '',
+    secondaryType: '',
     name: '',
     requestCompleted: false
   });
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    addByType(
-      [parseInt(formState.primaryType), parseInt(formState.secondaryType)],
-      formState.name
-    );
+    addByType([formState.primaryType, formState.secondaryType], formState.name);
 
     setFormState((prevState) => ({
       ...prevState,
@@ -32,14 +27,18 @@ export const AddMemberByTypeForm = () => {
     }));
   };
 
-  const handleChange = (
-    event: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>
-  ) => {
-    const { name, value } = event.target;
-
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
     setFormState((prevState) => ({
       ...prevState,
       [name]: value
+    }));
+  };
+
+  const handleTypesChange = (types: TypesSelectorsState) => {
+    setFormState((prevState) => ({
+      ...prevState,
+      ...types
     }));
   };
 
@@ -52,11 +51,11 @@ export const AddMemberByTypeForm = () => {
             className="form__input"
             type="input"
             name="name"
-            onChange={handleChange}
+            onChange={handleNameChange}
           />
         </label>
 
-        <TypesSelectors onTypesChanged={handleChange} />
+        <TypesSelectors onTypesChanged={handleTypesChange} />
         <button className="form__button" type="submit">
           Submit
         </button>

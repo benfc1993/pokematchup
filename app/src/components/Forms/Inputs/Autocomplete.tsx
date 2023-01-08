@@ -1,5 +1,6 @@
 import Fuse from 'fuse.js';
 import { useCallback, useEffect, useState } from 'react';
+import { flushSync } from 'react-dom';
 import '../formStyles.scss';
 import styles from './Autocomplete.module.scss';
 
@@ -14,6 +15,7 @@ type InputState<T> = {
   value: string;
   activeIndex: number;
   results: Fuse.FuseResult<T>[];
+  clicked: boolean;
 };
 
 export const Autocomplete = <T,>(props: AutocompleteProps<T>) => {
@@ -24,7 +26,8 @@ export const Autocomplete = <T,>(props: AutocompleteProps<T>) => {
     hovered: false,
     activeIndex: 0,
     value: '',
-    results: []
+    results: [],
+    clicked: false
   });
 
   const resetState = () => {
@@ -33,7 +36,8 @@ export const Autocomplete = <T,>(props: AutocompleteProps<T>) => {
       hovered: false,
       results: [],
       value: '',
-      activeIndex: 0
+      activeIndex: 0,
+      clicked: false
     });
   };
 
@@ -50,6 +54,15 @@ export const Autocomplete = <T,>(props: AutocompleteProps<T>) => {
     setSelection(inputState.results[inputState.activeIndex].item);
     resetState();
   }, [inputState, setSelection]);
+
+  const handleClick = (index: number) => {
+    console.log('handleClick', index);
+    setInputState((prevState) => ({
+      ...prevState,
+      activeIndex: index,
+      clicked: true
+    }));
+  };
 
   const onKeyDown = useCallback(
     (e: KeyboardEvent) => {
@@ -100,6 +113,14 @@ export const Autocomplete = <T,>(props: AutocompleteProps<T>) => {
     };
   }, [onKeyDown]);
 
+  useEffect(() => {
+    if (inputState.clicked) {
+      console.log('clicked');
+      setInputState((prevState) => ({ ...prevState, clicked: false }));
+      handleSelection();
+    }
+  }, [inputState]);
+
   return (
     <div
       onMouseEnter={() => {
@@ -145,7 +166,7 @@ export const Autocomplete = <T,>(props: AutocompleteProps<T>) => {
               className={`${styles.suggestion} ${
                 idx === inputState.activeIndex ? styles.active : ''
               }`}
-              onClick={() => handleSelection()}
+              onClick={() => handleClick(idx)}
               onMouseEnter={() =>
                 setInputState((prevState) => ({
                   ...prevState,

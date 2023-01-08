@@ -2,14 +2,14 @@ import { TeamData } from '../shared/types';
 
 export const addMemberByType = async (
   teamData: TeamData,
-  types: number[],
+  types: string[],
   name: string
 ) => {
   const response = await fetch(`/team/add/types`, {
     method: 'POST',
     body: JSON.stringify({
       teamData,
-      types: types.filter((t) => t >= 0),
+      types: types.filter((t) => t !== ''),
       name: name.normalize('NFD').replace(/\p{Diacritic}/gu, '')
     }),
     headers: {

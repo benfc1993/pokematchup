@@ -1,10 +1,10 @@
 import { types } from '../../shared/types';
-import { TypeIcon } from '../TypeIcon/TypeIcon';
+import { TypeIcon, TypeIconSize } from '../TypeIcon/TypeIcon';
 import './TypesList.scss';
 
 type TypesListProps = {
   list: string[];
-  size?: 'xsmall' | 'small' | 'medium' | 'large';
+  size?: TypeIconSize;
   showAll?: boolean;
 };
 

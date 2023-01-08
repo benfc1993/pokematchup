@@ -6,13 +6,12 @@ import {
   faCheckCircle,
   faCircleXmark,
   faXmark,
-  faMinus,
   faCircle,
   faAnglesDown,
   faAnglesUp
 } from '@fortawesome/free-solid-svg-icons';
-import { TypesList } from '../../TypesList/TypesList';
 import { useState } from 'react';
+import { PokemonStats } from '../../PokemonStats/PokemonStats';
 
 type MemberCardProps = {
   selected?: boolean;
@@ -20,20 +19,6 @@ type MemberCardProps = {
   onRemoveClicked: () => void;
   canHideTypes?: boolean;
   children?: React.ReactNode;
-};
-
-const statOrder: Omit<keyof TeamMember, 'monName'>[] = [
-  'Types',
-  'Weakness',
-  'Defence',
-  'Resistances'
-];
-
-const hints: Partial<Record<keyof TeamMember, string>> = {
-  defence: 'You take 1/2 damage',
-  offence: 'You deal 2x damage',
-  weakness: 'You take 2X damage',
-  resistances: 'You take 0 damage'
 };
 
 export const MemberCard: React.FC<MemberCardProps> = (props) => {
@@ -81,29 +66,7 @@ export const MemberCard: React.FC<MemberCardProps> = (props) => {
             className="member-card__stats"
             style={{ display: hidden ? 'none' : 'block' }}
           >
-            {statOrder.map((stat, idx) => {
-              const statData = member[stat.toLowerCase() as keyof TeamMember];
-              return (
-                statData instanceof Array && (
-                  <div className="member-card__stat">
-                    {idx > 0 && <FontAwesomeIcon icon={faMinus} />}
-                    <div style={{ marginBottom: '0.5em' }}>
-                      <p>{stat}</p>
-                      {stat.toLowerCase() in hints && (
-                        <p style={{ fontSize: '0.7em' }}>
-                          {hints[stat.toLowerCase() as keyof TeamMember]}
-                        </p>
-                      )}
-                    </div>
-                    <TypesList
-                      list={statData}
-                      showAll={false}
-                      size={stat === 'types' ? 'small' : 'xsmall'}
-                    />
-                  </div>
-                )
-              );
-            })}
+            <PokemonStats stats={member} showHints={true} iconSize={'small'} />
             {canHideTypes && !hidden && (
               <div
                 style={{

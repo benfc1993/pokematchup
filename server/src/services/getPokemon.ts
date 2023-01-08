@@ -23,9 +23,13 @@ export const matchupByName = async (
   teamData: TeamData,
   name: string
 ): Promise<MatchupResult> => {
-  return await getPokemonTypes(name).then(
-    async (opponentTypes) => await matchupByTypes(teamData, opponentTypes, name)
-  );
+  try {
+    const opponentTypes = await getPokemonTypes(name);
+    const results = await matchupByTypes(teamData, opponentTypes, name);
+    return results;
+  } catch (err) {
+    throw err;
+  }
 };
 
 export const matchupByTypes = async (
@@ -33,9 +37,13 @@ export const matchupByTypes = async (
   opponentTypes: Types[],
   opponenName: string = ''
 ): Promise<MatchupResult> => {
-  const teamChoices = await monsterChoice(teamData, opponentTypes);
-  const results = formatResults(opponenName, teamChoices, opponentTypes);
-  return results;
+  try {
+    const teamChoices = await monsterChoice(teamData, opponentTypes);
+    const results = formatResults(opponenName, teamChoices, opponentTypes);
+    return results;
+  } catch (err) {
+    throw err;
+  }
 };
 
 export const getPokemonTypes = async (name: string) => {
@@ -43,14 +51,18 @@ export const getPokemonTypes = async (name: string) => {
   if (cacheIndex !== -1) {
     return cache.data[cacheIndex];
   } else {
-    return await apiCall(name).then(async (data) => {
-      const opponent = (data.data as Pokemon).types.map((t) => t.type.name);
-      cache.index.push(name.toLowerCase());
-      cache.data.push(namesToTypes(opponent));
-      writeFile('data/cache.json', JSON.stringify(cache));
+    return await apiCall(name)
+      .then(async (data) => {
+        const opponent = (data.data as Pokemon).types.map((t) => t.type.name);
+        cache.index.push(name.toLowerCase());
+        cache.data.push(namesToTypes(opponent));
+        writeFile('data/cache.json', JSON.stringify(cache));
 
-      return namesToTypes(opponent);
-    });
+        return namesToTypes(opponent);
+      })
+      .catch((err) => {
+        throw err;
+      });
   }
 };
 
