@@ -47,7 +47,8 @@ export const TeamChoices = () => {
                     <div className={`flex-column ${style['choice-info']}`}>
                       <p className={`text-left ${style['choice-info__item']}`}>
                         Damage multiplier:{' '}
-                        {choiceData.damageMultiplier < 1
+                        {choiceData.damageMultiplier > 0 &&
+                        choiceData.damageMultiplier < 1
                           ? `1/${1 / choiceData.damageMultiplier}`
                           : 1}
                       </p>
