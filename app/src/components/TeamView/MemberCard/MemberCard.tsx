@@ -7,14 +7,18 @@ import {
   faCircleXmark,
   faXmark,
   faMinus,
-  faCircle
+  faCircle,
+  faAnglesDown,
+  faAnglesUp
 } from '@fortawesome/free-solid-svg-icons';
 import { TypesList } from '../../TypesList/TypesList';
+import { useState } from 'react';
 
 type MemberCardProps = {
   selected?: boolean;
   member: TeamMember;
   onRemoveClicked: () => void;
+  canHideTypes?: boolean;
   children?: React.ReactNode;
 };
 
@@ -33,7 +37,16 @@ const hints: Partial<Record<keyof TeamMember, string>> = {
 };
 
 export const MemberCard: React.FC<MemberCardProps> = (props) => {
-  const { selected, member, onRemoveClicked, children = null } = props;
+  const {
+    selected,
+    member,
+    onRemoveClicked,
+    canHideTypes = false,
+    children = null
+  } = props;
+
+  const [hidden, setHidden] = useState<boolean>(canHideTypes);
+
   return (
     <div className="member-card">
       <div className="member-card__title">
@@ -55,32 +68,56 @@ export const MemberCard: React.FC<MemberCardProps> = (props) => {
         <h3>{member.monName}</h3>
       </div>
       {children && children}
-
-      <div className="member-card__stats" style={{}}>
-        {statOrder.map((stat, idx) => {
-          const statData = member[stat.toLowerCase() as keyof TeamMember];
-          return (
-            statData instanceof Array && (
-              <div className="member-card__stat">
-                {idx > 0 && <FontAwesomeIcon icon={faMinus} />}
-                <div style={{ marginBottom: '0.5em' }}>
-                  <p>{stat}</p>
-                  {stat.toLowerCase() in hints && (
-                    <p style={{ fontSize: '0.7em' }}>
-                      {hints[stat.toLowerCase() as keyof TeamMember]}
-                    </p>
-                  )}
-                </div>
-                <TypesList
-                  list={statData}
-                  showAll={false}
-                  size={stat === 'types' ? 'small' : 'xsmall'}
-                />
+      <>
+        {canHideTypes && hidden ? (
+          <div
+            style={{ display: hidden ? 'block' : 'none', padding: '1em' }}
+            onClick={() => setHidden(false)}
+          >
+            <FontAwesomeIcon icon={faAnglesDown} color={'#afaba5'} />
+          </div>
+        ) : (
+          <div
+            className="member-card__stats"
+            style={{ display: hidden ? 'none' : 'block' }}
+          >
+            {statOrder.map((stat, idx) => {
+              const statData = member[stat.toLowerCase() as keyof TeamMember];
+              return (
+                statData instanceof Array && (
+                  <div className="member-card__stat">
+                    {idx > 0 && <FontAwesomeIcon icon={faMinus} />}
+                    <div style={{ marginBottom: '0.5em' }}>
+                      <p>{stat}</p>
+                      {stat.toLowerCase() in hints && (
+                        <p style={{ fontSize: '0.7em' }}>
+                          {hints[stat.toLowerCase() as keyof TeamMember]}
+                        </p>
+                      )}
+                    </div>
+                    <TypesList
+                      list={statData}
+                      showAll={false}
+                      size={stat === 'types' ? 'small' : 'xsmall'}
+                    />
+                  </div>
+                )
+              );
+            })}
+            {canHideTypes && !hidden && (
+              <div
+                style={{
+                  display: hidden ? 'none' : 'block',
+                  paddingTop: '1em'
+                }}
+                onClick={() => setHidden(true)}
+              >
+                <FontAwesomeIcon icon={faAnglesUp} color={'#afaba5'} />
               </div>
-            )
-          );
-        })}
-      </div>
+            )}
+          </div>
+        )}
+      </>
     </div>
   );
 };

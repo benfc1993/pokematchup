@@ -134,6 +134,7 @@ export const Autocomplete = <T,>(props: AutocompleteProps<T>) => {
           className={`form__input ${styles.input}`}
           value={inputState.value}
           onChange={handleChange}
+          placeholder={'start typing to seach...'}
         />
       </form>
       {inputState.results && (

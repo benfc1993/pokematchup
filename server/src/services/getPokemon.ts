@@ -14,6 +14,7 @@ type MatchupResult = {
       offence: string[];
       damageMultiplier: number;
       resistances: string[];
+      score: number;
     }
   >;
 };
@@ -59,7 +60,12 @@ export const monsterChoice = async (
 ) => {
   const choices: Record<
     string,
-    { offence: string[]; damageMultiplier: number; resistances: string[] }
+    {
+      offence: string[];
+      damageMultiplier: number;
+      resistances: string[];
+      score: number;
+    }
   > = {};
 
   const teamMembers: TeamMember[] = teamData.team;
@@ -90,7 +96,8 @@ export const monsterChoice = async (
       choices[teamMember.monName] = {
         offence,
         damageMultiplier,
-        resistances
+        resistances,
+        score: calculateScore(damageMultiplier, resistances, offence)
       };
   });
 
@@ -140,22 +147,24 @@ export function formatResults(
       offence: string[];
       damageMultiplier: number;
       resistances: string[];
+      score: number;
     }
   >,
   opponentTypes: Types[]
-): {
-  opponentData: TeamMember;
-  teamChoices: Record<
-    string,
-    {
-      offence: string[];
-      damageMultiplier: number;
-      resistances: string[];
-    }
-  >;
-} {
+): MatchupResult {
   return {
     opponentData: { ...getStats(opponentTypes), monName: opponentName },
     teamChoices: results
   };
 }
+const calculateScore = (
+  damageMultiplier: number,
+  resistances: string[],
+  offence: string[]
+): number => {
+  const defenceScore = (1 - damageMultiplier) / 0.25;
+  const resistancesScore = resistances.length;
+  const offenceScore = offence.length;
+
+  return defenceScore * 0.5 + resistancesScore * 2 + offenceScore * 4;
+};

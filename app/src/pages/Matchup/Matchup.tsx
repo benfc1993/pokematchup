@@ -9,7 +9,6 @@ export const Matchup: React.FC = () => {
   return (
     <MatchupProvider>
       <div className="flex-column w-100">
-        <h1 className={style['page__title']}>Matchup</h1>
         <div className={`${style['page']} team-choices`}>
           <div className={style.section}>
             <TeamChoices />

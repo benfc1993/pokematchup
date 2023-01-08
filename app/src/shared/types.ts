@@ -88,6 +88,7 @@ export type MatchupTeamChoices = Record<
     offence: string[];
     damageMultiplier: number;
     resistances: string[];
+    score: number;
   }
 >;
 

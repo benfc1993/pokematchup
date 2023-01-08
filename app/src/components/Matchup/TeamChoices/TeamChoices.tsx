@@ -1,4 +1,8 @@
-import { TeamMember } from '../../../shared/types';
+import {
+  MatchupResult,
+  MatchupTeamChoices,
+  TeamMember
+} from '../../../shared/types';
 import { useMatchupStore } from '../../../stores/matchupStore';
 import { useTeamStoreContext } from '../../../stores/TeamStore';
 import { EmptyCard } from '../../TeamView/MemberCard/EmptyCard';
@@ -9,7 +13,7 @@ import style from './TeamChoices.module.scss';
 export const TeamChoices = () => {
   const [teamChoices] = useMatchupStore((store) => store.teamChoices);
   const { teamData, removeMember } = useTeamStoreContext();
-  const teamMembers = Object.values(teamData.team) ?? [];
+  const teamMembers = sortTeamMembers(teamData.team, teamChoices);
 
   return (
     <div className="team-grid">
@@ -37,16 +41,20 @@ export const TeamChoices = () => {
                   })}
                   onRemoveClicked={() => removeMember(idx)}
                   member={teamMembers[idx] as TeamMember}
+                  canHideTypes={teamChoices !== null}
                 >
                   {choiceData && (
                     <div className={`flex-column ${style['choice-info']}`}>
                       <p className={`text-left ${style['choice-info__item']}`}>
-                        damage multiplier: {choiceData.damageMultiplier}
+                        Damage multiplier:{' '}
+                        {choiceData.damageMultiplier < 1
+                          ? `1/${1 / choiceData.damageMultiplier}`
+                          : 1}
                       </p>
                       <div
                         className={`d-flex align-center  ${style['choice-info__item']}`}
                       >
-                        <p style={{ marginRight: '1em' }}>resistances:</p>
+                        <p style={{ marginRight: '1em' }}>Resistances:</p>
                         <TypesList
                           list={choiceData?.resistances}
                           showAll={false}
@@ -56,7 +64,7 @@ export const TeamChoices = () => {
                       <div
                         className={`d-flex align-center  ${style['choice-info__item']}`}
                       >
-                        <p style={{ marginRight: '1em' }}>offence:</p>
+                        <p style={{ marginRight: '1em' }}>Offence:</p>
                         <TypesList
                           list={choiceData?.offence}
                           showAll={false}
@@ -75,5 +83,27 @@ export const TeamChoices = () => {
           );
         })}
     </div>
+  );
+};
+
+const sortTeamMembers = (
+  team: Partial<Record<string, TeamMember>>,
+  teamChoices: MatchupTeamChoices | null
+) => {
+  return (
+    Object.values(team).sort((a, b) => {
+      const sort =
+        teamChoices &&
+        teamChoices[a?.monName as string] &&
+        teamChoices[b?.monName as string]
+          ? teamChoices[b?.monName as string].score -
+            teamChoices[a?.monName as string].score
+          : -100;
+      return teamChoices &&
+        !teamChoices[a?.monName as string] &&
+        teamChoices[b?.monName as string]
+        ? 1
+        : sort;
+    }) ?? []
   );
 };

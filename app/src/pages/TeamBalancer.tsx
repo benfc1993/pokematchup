@@ -5,8 +5,6 @@ import style from './Page.module.scss';
 export const TeamBalancer: React.FC = () => {
   return (
     <div className="flex-column w-100">
-      <h1 className={style['page__title']}>Team Balancer</h1>
-
       <div className={style.page}>
         <div className={style.section}>
           <TeamView />
