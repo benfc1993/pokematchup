@@ -1,14 +1,15 @@
 .grid {
-    grid-row:2;
-    @media(min-width: 1080px) {
-        grid-row: 1;
-    }
+  grid-row: 2;
+  @media (min-width: 1080px) {
+    grid-row: 1;
+  }
 }
 
 .summary {
-    grid-row:1;
-    @media(min-width: 1080px) {
-        grid-column: 3;
-        justify-content: flex-start;
-    }
+  grid-row: 1;
+  @media (min-width: 1080px) {
+    display: flex;
+    grid-column: 3;
+    justify-content: flex-start;
+  }
 }

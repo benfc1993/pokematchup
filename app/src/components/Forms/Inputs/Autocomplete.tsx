@@ -1,6 +1,5 @@
 import Fuse from 'fuse.js';
 import { useCallback, useEffect, useState } from 'react';
-import { flushSync } from 'react-dom';
 import '../formStyles.scss';
 import styles from './Autocomplete.module.scss';
 
@@ -119,7 +118,7 @@ export const Autocomplete = <T,>(props: AutocompleteProps<T>) => {
       setInputState((prevState) => ({ ...prevState, clicked: false }));
       handleSelection();
     }
-  }, [inputState]);
+  }, [inputState, handleSelection]);
 
   return (
     <div

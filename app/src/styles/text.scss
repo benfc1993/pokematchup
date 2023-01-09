@@ -1,28 +1,32 @@
-.text{
-    &-l {
-        font-size: 3em;
-    }
-    &-xl {
-        font-size: 4em;
-    }
-    &-xxl {
-        font-size: 5em;
-    }
-    &-center {
-        text-align: center;
-    }
-    &-left {
-        text-align: left;
-    }
-    &-right {
-        text-align: right;
-    }
+.text {
+  &-l {
+    font-size: 3em;
+  }
+  &-xl {
+    font-size: 4em;
+  }
+  &-xxl {
+    font-size: 5em;
+  }
+  &-center {
+    text-align: center;
+  }
+  &-left {
+    text-align: left;
+  }
+  &-right {
+    text-align: right;
+  }
 }
 
 .error {
-    color: red;
+  color: red;
 }
 
 h1 {
-    margin: 0.3em;
+  margin: 0.3em;
+}
+
+h2 {
+  margin: 0.4em;
 }

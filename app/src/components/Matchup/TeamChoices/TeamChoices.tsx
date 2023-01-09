@@ -1,8 +1,4 @@
-import {
-  MatchupResult,
-  MatchupTeamChoices,
-  TeamMember
-} from '../../../shared/types';
+import { MatchupTeamChoices, TeamMember } from '../../../shared/types';
 import { useMatchupStore } from '../../../stores/matchupStore';
 import { useTeamStoreContext } from '../../../stores/TeamStore';
 import { EmptyCard } from '../../TeamView/MemberCard/EmptyCard';
@@ -19,8 +15,8 @@ export const TeamChoices = () => {
     <div className="team-grid">
       {teamData &&
         Array.from({ length: 6 }).map((_v, idx) => {
-          const name = teamMembers[idx]?.monName;
-          const choiceData = teamChoices && name ? teamChoices[name] : null;
+          const id = teamMembers[idx]?.id;
+          const choiceData = teamChoices && id ? teamChoices[id] : null;
           return teamMembers[idx] ? (
             <div
               key={`${teamMembers[idx]?.monName}-${idx}`}
@@ -36,9 +32,11 @@ export const TeamChoices = () => {
                   {...(teamChoices !== null && {
                     selected:
                       teamChoices !== null &&
-                      (teamMembers[idx]?.monName as string) in teamChoices
+                      (teamMembers[idx]?.id as string) in teamChoices
                   })}
-                  onRemoveClicked={() => removeMember(idx)}
+                  onRemoveClicked={() =>
+                    removeMember(teamMembers[idx]?.id as string)
+                  }
                   member={teamMembers[idx] as TeamMember}
                   canHideTypes={teamChoices !== null}
                 >
@@ -92,18 +90,11 @@ const sortTeamMembers = (
 ) => {
   return (
     Object.values(team).sort((a, b) => {
-      const sort =
-        teamChoices &&
-        teamChoices[a?.monName as string] &&
-        teamChoices[b?.monName as string]
-          ? teamChoices[b?.monName as string].score -
-            teamChoices[a?.monName as string].score
-          : -100;
-      return teamChoices &&
-        !teamChoices[a?.monName as string] &&
-        teamChoices[b?.monName as string]
-        ? 1
-        : sort;
+      if (!teamChoices) return 0;
+      const aM = teamChoices[a?.id as string];
+      const bM = teamChoices[b?.id as string];
+      const sort = aM && bM ? bM.score - aM.score : -100;
+      return teamChoices && !aM && bM ? 1 : sort;
     }) ?? []
   );
 };

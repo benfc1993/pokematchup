@@ -80,6 +80,7 @@ export type TeamData = {
 
 export type TeamMember = PokemonStats & {
   monName: string;
+  id: string;
 };
 
 export type MatchupTeamChoices = Record<

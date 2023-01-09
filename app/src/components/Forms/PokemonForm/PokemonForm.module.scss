@@ -1,0 +1,10 @@
+.button {
+  padding: 0.5em;
+  margin: 0 0.1em;
+  transition: ease 0.3s;
+  font-weight: bold;
+  border-radius: 4px;
+}
+.active {
+  background-color: #148dbb63;
+}

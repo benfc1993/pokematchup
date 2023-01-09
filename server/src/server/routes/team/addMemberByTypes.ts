@@ -1,7 +1,6 @@
 import { Router } from 'express';
 import { namesToTypes } from '../../../services/conversions';
 import { TeamData, validateTeam } from '../../../services/teamValidations';
-import { sentenceCase } from '../../../services/utils';
 import { ApiRequest } from '../../types';
 
 export const addMemberByTypes = (router: Router) =>
@@ -11,13 +10,12 @@ export const addMemberByTypes = (router: Router) =>
       req: ApiRequest<{
         teamData: TeamData;
         types: string[];
-        name: string;
       }>,
       res
     ) => {
-      const { teamData, name, types } = req.body;
+      const { teamData, types } = req.body;
 
-      if (!req.body.name || !req.body.types || !req.body.teamData)
+      if (!req.body.types || !req.body.teamData)
         return res.status(400).send('Request data malformed');
 
       if (req.body instanceof Array)
@@ -29,7 +27,7 @@ export const addMemberByTypes = (router: Router) =>
       );
 
       currentTeam.types.push(namesToTypes(types));
-      names.push(sentenceCase(name));
+      names.push('');
 
       const newTeam = validateTeam(currentTeam.types, names);
 

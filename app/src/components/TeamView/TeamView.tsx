@@ -16,7 +16,9 @@ export const TeamView: React.FC = () => {
             <div className="grid-item">
               <MemberCard
                 key={teamMembers[idx]?.monName}
-                onRemoveClicked={() => removeMember(idx)}
+                onRemoveClicked={() =>
+                  removeMember(teamMembers[idx]?.id as string)
+                }
                 member={teamMembers[idx] as TeamMember}
               />
             </div>

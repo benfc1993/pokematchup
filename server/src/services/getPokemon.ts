@@ -2,6 +2,7 @@ import { writeFile } from 'fs/promises';
 import { cache } from '../server/server';
 import { apiCall, Pokemon } from './api';
 import { namesToTypes, typesToNames } from './conversions';
+import { CreateUUID } from './createUUID';
 import { Types } from './perms';
 import { getStats, PokemonStats } from './stats';
 import { TeamData, TeamMember } from './teamValidations';
@@ -105,7 +106,7 @@ export const monsterChoice = async (
       ) || [];
 
     if (damageMultiplier <= 1 && !opponentIsResistant)
-      choices[teamMember.monName] = {
+      choices[teamMember.id] = {
         offence,
         damageMultiplier,
         resistances,
@@ -165,7 +166,11 @@ export function formatResults(
   opponentTypes: Types[]
 ): MatchupResult {
   return {
-    opponentData: { ...getStats(opponentTypes), monName: opponentName },
+    opponentData: {
+      ...getStats(opponentTypes),
+      monName: opponentName,
+      id: CreateUUID()
+    },
     teamChoices: results
   };
 }

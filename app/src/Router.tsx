@@ -10,8 +10,8 @@ export const router = createBrowserRouter([
     element: (
       <>
         <TeamStoreProvider>
-          <NavBar />
           <Outlet />
+          <NavBar />
         </TeamStoreProvider>
       </>
     ),

@@ -23,10 +23,10 @@ const statOrder = [
 type StatOrder = typeof statOrder[number];
 
 const hints: Partial<Record<StatOrder, string>> = {
-  defence: 'You take 1/2 damage',
-  offence: 'You deal 2x damage',
-  weakness: 'You take 2X damage',
-  resistances: 'You take 0 damage'
+  defence: 'You take 1/2',
+  offence: 'You deal 2x',
+  weakness: 'You take 2X',
+  resistances: 'You take 0'
 };
 
 export const PokemonStats = <T extends Stats>(props: PokemonStatsProps<T>) => {
@@ -53,7 +53,6 @@ export const PokemonStats = <T extends Stats>(props: PokemonStatsProps<T>) => {
                   <p style={{ fontSize: '0.7em' }}>{hints[stat]}</p>
                 )}
               </div>
-              <div></div>
               {/* {count > 1 && <FontAwesomeIcon icon={faMinus} />} */}
               <TypesList
                 list={statData}

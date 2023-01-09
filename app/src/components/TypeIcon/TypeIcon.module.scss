@@ -1,24 +1,24 @@
 .type-icon {
-    width: 5em;
-    height: 5em;
-    &--xsmall {
-        width: 1.7em;
-        height: 1.7em;
+  width: 5em;
+  height: 5em;
+  &--xsmall {
+    width: 1.7em;
+    height: 1.7em;
+  }
+  &--small {
+    width: 2em;
+    height: 2em;
+  }
+  &--medium {
+    width: 2em;
+    height: 2em;
+    @media (min-width: 1080px) {
+      width: 4em;
+      height: 4em;
     }
-    &--small {
-        width: 2em;
-        height: 2em;
-    }
-    &--medium {
-        width: 2em;
-        height: 2em;
-        @media(min-width: 1080px) {
-            width: 4em;
-            height: 4em;
-        }
-    }
-    &--large {
-        width: 6em;
-        height: 6em;
-    }
+  }
+  &--large {
+    width: 6em;
+    height: 6em;
+  }
 }

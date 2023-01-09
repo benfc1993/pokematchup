@@ -2,13 +2,13 @@ import { TeamData } from '../shared/types';
 
 export const removeMemberById = async (
   teamData: TeamData,
-  memberIndex: number
+  memberId: string
 ) => {
   const response = await fetch(`/team/remove`, {
     method: 'POST',
     body: JSON.stringify({
       teamData,
-      memberIndex
+      memberId
     }),
     headers: {
       'Content-Type': 'application/json'

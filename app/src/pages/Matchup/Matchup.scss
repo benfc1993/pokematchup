@@ -1,14 +1,17 @@
 .team-choices {
-    grid-row:2;
-    @media(min-width: 1080px) {
-        grid-row: 1;
-    }
+  grid-row: 2;
+  overflow-y: auto;
+  min-height: 50vh;
+  @media (min-width: 1080px) {
+    grid-row: 1;
+  }
 }
 
 .opponent {
-    grid-row:1;
-    @media(min-width: 1080px) {
-        grid-column: 3;
-        justify-content: flex-start;
-    }
+  grid-row: 1;
+  min-height: 50vh;
+  @media (min-width: 1080px) {
+    grid-column: 3;
+    justify-content: flex-start;
+  }
 }

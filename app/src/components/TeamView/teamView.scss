@@ -1,21 +1,20 @@
 .team-grid {
-    display: flex;
-    // grid-template-columns: 1fr;
-    width: 100%;
-    overflow-x: auto;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  overflow-x: auto;
+  @media (min-width: 500px) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (min-width: 1400px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .grid-item {
+    margin: 10px;
+    min-width: calc(100vw - 20px);
     @media (min-width: 500px) {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
+      min-width: 0;
     }
-    @media (min-width: 1400px) {
-        grid-template-columns: repeat(3, 1fr);
-    }
-    .grid-item {
-        margin: 10px;
-        min-width: calc(100vw - 20px);
-        @media (min-width: 500px) {
-            min-width: 0;
-        }
-    }
+  }
 }
-

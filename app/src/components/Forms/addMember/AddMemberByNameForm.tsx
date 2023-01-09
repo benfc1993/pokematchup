@@ -43,14 +43,12 @@ export const AddMemberByNameForm: React.FC = () => {
 
   return (
     <div>
-      <form className="form" onSubmit={(e) => e.preventDefault()}>
-        {formState.success && <p className="success">{formState.success}</p>}
-        {formState.error && <p className="error">{formState.error}</p>}
-        <label className="form__label w-100">
-          <p>Name:</p>
-          <Autocomplete fuse={namesIndex} setSelection={handleSubmit} />
-        </label>
-      </form>
+      {formState.success && <p className="success">{formState.success}</p>}
+      {formState.error && <p className="error">{formState.error}</p>}
+      <label className="form__label w-100">
+        <p>Name:</p>
+        <Autocomplete fuse={namesIndex} setSelection={handleSubmit} />
+      </label>
     </div>
   );
 };

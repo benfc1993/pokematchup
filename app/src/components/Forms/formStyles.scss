@@ -1,5 +1,5 @@
 .w-100 {
-    width: 100%;
+  width: 100%;
 }
 .form {
   display: flex;
@@ -12,7 +12,7 @@
   padding: 20px;
   box-sizing: border-box;
   background-color: #202223;
-  color: #afaba5; 
+  color: #afaba5;
   border-radius: 12px;
 
   &__label {
@@ -21,11 +21,11 @@
     margin-bottom: 8px;
     color: #333333;
   }
-  
+
   &__label p {
     text-align: left;
   }
-  
+
   &__input,
   &__textarea {
     width: 100%;
@@ -39,15 +39,11 @@
     background-color: #202223;
     resize: vertical;
   }
-  
+
   &__input:focus,
   &__textarea:focus {
     outline: none;
     border-color: #cccccc;
     box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
   }
-  
-
 }
-
-

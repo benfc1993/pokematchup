@@ -1,6 +1,7 @@
 import { Types, matchups } from './perms';
 import { nameToType, typesSetToNames } from './conversions';
 import { getStats, PokemonStats } from './stats';
+import { CreateUUID } from './createUUID';
 
 type Team = Types[][];
 
@@ -14,6 +15,7 @@ export type TeamData = {
 
 export type TeamMember = PokemonStats & {
   monName: string;
+  id: string;
 };
 
 export const validateTeam = (team: Team, names: string[]) => {
@@ -33,7 +35,7 @@ export const validateTeam = (team: Team, names: string[]) => {
   for (const mon of team) {
     const monStats = getStats(mon);
 
-    teamData.team.push({ ...monStats, monName: names[i] });
+    teamData.team.push({ ...monStats, monName: names[i], id: CreateUUID() });
 
     for (const o of monStats.offence) {
       fullOffence.add(nameToType(o));

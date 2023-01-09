@@ -19,7 +19,7 @@ export const AddMemberByTypeForm = () => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    addByType([formState.primaryType, formState.secondaryType], formState.name);
+    addByType(formState);
 
     setFormState((prevState) => ({
       ...prevState,

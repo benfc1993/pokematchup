@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { addMemberByName, addMemberByType } from '../api/addMember';
 import { removeMemberById } from '../api/removeMemberById';
+import { TypesSelectorsState } from '../components/Forms/TypesSelector';
 import { TeamData } from '../shared/types';
 
 export const useTeamStore = () => {
@@ -27,8 +28,9 @@ export const useTeamStore = () => {
     setTeamData(newTeamData);
   };
 
-  const addByType = async (types: string[], name: string) => {
-    const newTeam = await addMemberByType(teamData, types, name);
+  const addByType = async (types: TypesSelectorsState) => {
+    const filteredTypes = Object.values(types).filter((type) => type !== '');
+    const newTeam = await addMemberByType(teamData, filteredTypes, '');
     setData(newTeam);
   };
 
@@ -37,7 +39,7 @@ export const useTeamStore = () => {
     setData(newTeam);
   };
 
-  const removeMember = async (memberId: number) => {
+  const removeMember = async (memberId: string) => {
     const newTeam = await removeMemberById(teamData, memberId);
     setData(newTeam);
   };
@@ -45,9 +47,9 @@ export const useTeamStore = () => {
   return {
     teamData,
     setData: (newTeamData: TeamData) => setData(newTeamData),
-    addByType: async (types: string[], name: string) => addByType(types, name),
+    addByType: async (types: TypesSelectorsState) => addByType(types),
     addByName: async (name: string) => addByName(name),
-    removeMember: (memberId: number) => removeMember(memberId),
+    removeMember: (memberId: string) => removeMember(memberId),
     loading
   };
 };

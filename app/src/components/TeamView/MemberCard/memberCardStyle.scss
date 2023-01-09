@@ -1,59 +1,59 @@
 .member-card {
-    display: flex;
-    flex-direction: column;
-    min-width: 8em;
-    background-color: #2a2d2e;
-    border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  min-width: 8em;
+  background-color: #2a2d2e;
+  border-radius: 4px;
+  position: relative;
+  height: 100%;
+
+  &__title {
+    border-radius: 4px 4px 0 0;
+    background-color: #212224;
+    padding: 12px;
     position: relative;
-    height: 100%;
-    
-    &__title {
-        border-radius: 4px 4px 0 0;
-        background-color: #444444;
-        padding: 12px;
-        position: relative;
-        h3 {
-            margin: 0;
-            color: #afaba5;
-        }
+    h3 {
+      margin: 0;
+      color: #afaba5;
     }
+  }
 
-    &__stats {
-        margin-bottom: auto;
-        padding: 1em;
-        display: flex;
-    }
+  &__stats {
+    margin-bottom: auto;
+    padding: 1em;
+    display: flex;
+  }
 
-    &__icons {
-        display: flex;
-        justify-content: center;
-    }
-    
-    &__selected {
-        position: absolute;
-    }
+  &__icons {
+    display: flex;
+    justify-content: center;
+  }
 
+  &__selected {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
 
+  &__empty {
+    padding: 1em;
+    transition: ease 0.25s;
+  }
 
-    &__empty {
-        padding: 0;
-        transition: ease 0.25s;
+  &__close {
+    cursor: pointer;
+    background-color: #db2222;
+    color: #c9c7c5;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 50%;
+    border-top-right-radius: 4px;
+    padding: 4px 6px;
+    font-style: bold;
+    transition: ease 0.25s;
+    &:hover {
+      background-color: #a81d1d;
     }
-    
-    &__close {
-        cursor: pointer;
-        background-color: #db2222;
-        color: #c9c7c5;
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        border-top-right-radius: 4px;
-        padding: 4px 6px;
-        font-style: bold;
-        transition: ease 0.25s;
-        &:hover {
-            background-color: #a81d1d;
-        }
-    }
+  }
 }

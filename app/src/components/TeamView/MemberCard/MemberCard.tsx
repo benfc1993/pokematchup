@@ -5,10 +5,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCheckCircle,
   faCircleXmark,
-  faXmark,
   faCircle,
   faAnglesDown,
-  faAnglesUp
+  faAnglesUp,
+  faTrashCan
 } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import { PokemonStats } from '../../PokemonStats/PokemonStats';
@@ -31,7 +31,7 @@ export const MemberCard: React.FC<MemberCardProps> = (props) => {
     children = null
   } = props;
 
-  const [hidden, setHidden] = useState<boolean>(canHideTypes);
+  const [hidden, setHidden] = useState<boolean>(true);
 
   return (
     <div className="member-card">
@@ -49,7 +49,7 @@ export const MemberCard: React.FC<MemberCardProps> = (props) => {
           </div>
         )}
         <div className="member-card__close" onClick={() => onRemoveClicked()}>
-          <FontAwesomeIcon icon={faXmark} />
+          <FontAwesomeIcon icon={faTrashCan} />
         </div>
         <div className="d-flex justify-center align-center">
           <h3 style={{ marginRight: '1em' }}>{member.monName}</h3>
@@ -68,7 +68,10 @@ export const MemberCard: React.FC<MemberCardProps> = (props) => {
         ) : (
           <div
             className="member-card__stats"
-            style={{ display: hidden ? 'none' : 'block' }}
+            style={{
+              display: canHideTypes && hidden ? 'none' : 'block',
+              marginBottom: canHideTypes ? '10px' : ''
+            }}
           >
             <PokemonStats
               stats={member}

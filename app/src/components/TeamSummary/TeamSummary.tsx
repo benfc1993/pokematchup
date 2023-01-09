@@ -1,11 +1,12 @@
 import { useTeamStoreContext } from '../../stores/TeamStore';
 import { TypesList } from '../TypesList/TypesList';
+import styles from './TeamSummary.module.scss';
 
 export const TeamSummary: React.FC = () => {
   const { teamData } = useTeamStoreContext();
   return (
     teamData && (
-      <>
+      <div className={styles['team-summary']}>
         <div className="flex-column align-center w-100">
           <h3>Defences:</h3>
           <TypesList list={teamData.defences} size={'small'} />
@@ -18,7 +19,7 @@ export const TeamSummary: React.FC = () => {
           <h3>Weaknesses:</h3>
           <TypesList list={teamData.weaknesses} size={'small'} />
         </div>
-      </>
+      </div>
     )
   );
 };
